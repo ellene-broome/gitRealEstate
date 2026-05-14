@@ -1,6 +1,6 @@
-# Get Real Estate
+# Git Real Estate
 
-A modern real estate web application built with React and Vite.
+A real estate platform being built one commit at a time.
 
 ## Project Goals
 
