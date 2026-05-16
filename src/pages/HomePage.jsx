@@ -7,6 +7,10 @@ function HomePage() {
     const [cityFilter, setCityFilter] = useState("");
 
     const [bedsFilter, setBedsFilter] = useState("");
+
+    const [maxPrice, setMaxPrice] = useState("");
+
+        const [sortOrder, setSortOrder] = useState("");
   return (
     <>
     <Navbar />
@@ -43,6 +47,22 @@ function HomePage() {
         setBedsFilter(event.target.value)
       }
     />
+
+    <input
+        type="number"
+         placeholder="Max price"
+        value={maxPrice}
+        onChange={(event) => setMaxPrice(event.target.value)}
+    />
+
+    <select
+        value={sortOrder}
+        onChange={(event) => setSortOrder(event.target.value)}
+    >
+        <option value="">Sort by</option>
+        <option value="low-to-high">Price: Low to High</option>
+        <option value="high-to-low">Price: High to Low</option>
+    </select>
         </div>
     </section>
 
@@ -51,19 +71,40 @@ function HomePage() {
 
         <div className="listing-grid">
           {listings
-    .filter((listing) => {
-        const matchesCity = listing.city
-      .toLowerCase()
-      .includes(cityFilter.toLowerCase());
+            .filter((listing) => {
+                const listingPrice = Number(
+                    listing.price.replace("$", "").replace(",", "")
+        );
 
-        const matchesBeds =
-      bedsFilter === "" || listing.beds >= Number(bedsFilter);
+                const matchesCity = listing.city
+                    .toLowerCase()
+                    .includes(cityFilter.toLowerCase());
 
-        return matchesCity && matchesBeds;
-  })
-      .map((listing) => (
-    <ListingCard key={listing.id} listing={listing} />
-  ))}
+                const matchesBeds =
+                    bedsFilter === "" || listing.beds >= Number(bedsFilter);
+
+                const matchesMaxPrice =
+                    maxPrice === "" || listingPrice <= Number(maxPrice);
+
+                return matchesCity && matchesBeds && matchesMaxPrice;
+        })
+        .sort((a, b) => {
+                const priceA = Number(a.price.replace("$", "").replace(",", ""));
+                const priceB = Number(b.price.replace("$", "").replace(",", ""));
+
+                if (sortOrder === "low-to-high") {
+                return priceA - priceB;
+    }
+
+                if (sortOrder === "high-to-low") {
+                    return priceB - priceA;
+    }
+
+                return 0;
+                })
+                .map((listing) => (
+                    <ListingCard key={listing.id} listing={listing} />
+                ))}
         </div>
       </section>
     </>
