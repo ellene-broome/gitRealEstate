@@ -4,18 +4,24 @@ const listings = [
     price: "$425,000",
     address: "123 Cypress Lane",
     city: "Baton Rouge, LA",
+    image:
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
   },
   {
     id: 2,
     price: "$315,000",
     address: "45 Oak Drive",
     city: "Denham Springs, LA",
+    image:
+      "https://images.unsplash.com/photo-1576941089067-2de3c901e126",
   },
   {
     id: 3,
     price: "$599,000",
     address: "78 River Road",
     city: "Prairieville, LA",
+    image:
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d",
   },
 ];
 
@@ -57,7 +63,11 @@ function App() {
         <div className="listing-grid">
           {listings.map((listing) => (
             <div key={listing.id} className="listing-card">
-              <div className="listing-image"></div>
+              <img
+                src={listing.image}
+                alt={listing.address}
+                className="listing-image"
+                /> 
 
               <h3>{listing.price}</h3>
 
