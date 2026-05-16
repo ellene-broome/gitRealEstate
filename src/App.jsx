@@ -1,31 +1,48 @@
+import { Routes, Route, Link, useParams } from "react-router-dom";
+
 const listings = [
   {
     id: 1,
     price: "$425,000",
     address: "123 Cypress Lane",
     city: "Baton Rouge, LA",
+    beds: 4,
+    baths: 3,
+    sqft: 2400,
     image:
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
+    description:
+      "Beautiful modern home located near shopping, restaurants, and great schools.",
   },
   {
     id: 2,
     price: "$315,000",
     address: "45 Oak Drive",
     city: "Denham Springs, LA",
+    beds: 3,
+    baths: 2,
+    sqft: 1850,
     image:
       "https://images.unsplash.com/photo-1576941089067-2de3c901e126",
+    description:
+      "Charming family home with spacious backyard and updated kitchen.",
   },
   {
     id: 3,
     price: "$599,000",
     address: "78 River Road",
     city: "Prairieville, LA",
+    beds: 5,
+    baths: 4,
+    sqft: 3200,
     image:
       "https://images.unsplash.com/photo-1600585154526-990dced4db0d",
+    description:
+      "Luxury property featuring large living spaces and premium finishes.",
   },
 ];
 
-function App() {
+function HomePage() {
   return (
     <>
       <header className="navbar">
@@ -46,13 +63,15 @@ function App() {
           <h1>Find Your Next Louisiana Home</h1>
 
           <p>
-            Helping buyers and sellers across Baton Rouge, Denham Springs,
-            Prairieville, and surrounding areas.
+            Helping buyers and sellers across the Greater Baton Rouge area.
           </p>
 
           <div className="hero-buttons">
             <button>Browse Listings</button>
-            <button className="secondary-button">Contact Agent</button>
+
+            <button className="secondary-button">
+              Contact Agent
+            </button>
           </div>
         </div>
       </section>
@@ -67,7 +86,7 @@ function App() {
                 src={listing.image}
                 alt={listing.address}
                 className="listing-image"
-                /> 
+              />
 
               <h3>{listing.price}</h3>
 
@@ -75,43 +94,81 @@ function App() {
 
               <p>{listing.city}</p>
 
-              <button>View Details</button>
+              <div className="listing-details">
+                <span>{listing.beds} Beds</span>
+                <span>{listing.baths} Baths</span>
+                <span>{listing.sqft} sqft</span>
+              </div>
+
+              <Link to={`/listing/${listing.id}`}>
+                <button>View Details</button>
+              </Link>
             </div>
           ))}
         </div>
       </section>
-
-      <section id="areas" className="areas-section">
-        <h2>Areas Served</h2>
-
-        <div className="areas-grid">
-        <div className="area-card">East Baton Rouge Parish</div>
-        <div className="area-card">West Baton Rouge Parish</div>
-        <div className="area-card">Livingston Parish</div>
-        <div className="area-card">Ascension Parish</div>
-        </div>
-      </section>
-
-      <section id="contact" className="contact-section">
-        <h2>Ready To Start Your Home Search?</h2>
-
-        <p>
-          Whether buying or selling, Git Real Estate is here to help guide you
-          through the process.
-        </p>
-
-        <button>Contact Today</button>
-      </section>
-
-      <footer className="footer">
-        <p>Git Real Estate</p>
-
-        <p>
-          Equal Housing Opportunity • Licensed in Louisiana • Brokerage
-          information coming soon
-        </p>
-      </footer>
     </>
+  );
+}
+
+function PropertyDetails() {
+  const { id } = useParams();
+
+  const listing = listings.find(
+    (listing) => listing.id === Number(id)
+  );
+
+  if (!listing) {
+    return (
+      <div className="details-page">
+        <h1>Listing Not Found</h1>
+
+        <Link to="/">
+          <button>Back Home</button>
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="details-page">
+      <img
+        src={listing.image}
+        alt={listing.address}
+        className="details-image"
+      />
+
+      <h1>{listing.price}</h1>
+
+      <h2>{listing.address}</h2>
+
+      <p>{listing.city}</p>
+
+      <div className="listing-details">
+        <span>{listing.beds} Beds</span>
+        <span>{listing.baths} Baths</span>
+        <span>{listing.sqft} sqft</span>
+      </div>
+
+      <p>{listing.description}</p>
+
+      <Link to="/">
+        <button>Back Home</button>
+      </Link>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+
+      <Route
+        path="/listing/:id"
+        element={<PropertyDetails />}
+      />
+    </Routes>
   );
 }
 
