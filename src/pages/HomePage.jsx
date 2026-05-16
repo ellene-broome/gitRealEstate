@@ -1,9 +1,11 @@
 import ListingCard from "../components/ListingCard";
 import { listings } from "../data/listings";
+import Navbar from "../components/Navbar";
 
 function HomePage() {
   return (
     <>
+    <Navbar />
       <section className="hero">
         <div className="hero-overlay">
           <h1>Find Your Next Louisiana Home</h1>
