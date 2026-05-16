@@ -28,17 +28,54 @@ This project is being built to become a full-featured real estate platform with:
 - React app initialized with Vite
 - Git branch workflow setup
 - Development environment configured
+- React + Vite setup
+- Responsive homepage
+- Featured property listings
+- Dynamic property detail pages
+- React Router navigation
+- Reusable React components
+- Property data separation
+- Mobile responsive layout
+- Git feature branch workflow
 
-## Future Features
+## Project Structure
+```
+src/
+├── components/
+├── data/
+├── pages/
+├── App.jsx
+├── main.jsx
+└── index.css
+```
 
-- Tailwind CSS styling
-- Property cards
+## In Progress
+
+- Component refactor
 - Search filters
-- Property details pages
+- Property detail enhancements
+- Real estate branding
+
+## Future Goals
+
+- MLS / IDX integration
+- Authentication
+- Saved favorites
+- Agent dashboard
 - Backend API
 - Database integration
-- IDX/MLS integration
-- Authentication system
+- Contact form system
+- Mortgage calculator
+- Interactive maps
+
+## Branch Workflow
+
+Main branches used in this project:
+
+- main → stable production-ready code
+- setup/* → project setup tasks
+- feature/* → application features
+- backend/* → server/database work
 
 ## Installation
 
@@ -55,14 +92,6 @@ npm install
 ```bash
 npm run dev
 ```
-## Branch Workflow
-
-Main branches used in this project:
-
-- main → stable production-ready code
-- setup/* → project setup tasks
-- feature/* → application features
-- backend/* → server/database work
 ## Author
 
 Ellene Broome
