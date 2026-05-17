@@ -3,6 +3,12 @@ import { listings } from "../data/listings";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 
+    
+
+
+
+
+
 function HomePage() {
     const [cityFilter, setCityFilter] = useState("");
 
@@ -10,7 +16,36 @@ function HomePage() {
 
     const [maxPrice, setMaxPrice] = useState("");
 
-        const [sortOrder, setSortOrder] = useState("");
+    const [sortOrder, setSortOrder] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+});
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+function handleInputChange(event) {
+    const { name, value } = event.target;
+
+  setFormData({
+    ...formData,
+    [name]: value,
+  });
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+
+  setFormSubmitted(true);
+
+  setFormData({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+}
   return (
     <>
     <Navbar />
@@ -37,7 +72,7 @@ function HomePage() {
       onChange={(event) =>
         setCityFilter(event.target.value)
       }
-        />
+    />
 
      <input
       type="number"
@@ -107,7 +142,62 @@ function HomePage() {
                 ))}
         </div>
       </section>
-    </>
+
+      <section className="contact-section">
+         <h2>Contact Git Real Estate</h2>
+
+         <p>
+            Ready to buy, sell, or learn more about available properties in the
+            Greater Baton Rouge area?  
+        </p>
+
+        {formSubmitted && (
+            <p className="success-message">
+                Thank you! Your message has been sent.
+            </p>
+  )}
+
+        <form className="contact-form" onSubmit={handleSubmit}>
+            <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+        />
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+        />
+
+            <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={handleInputChange}
+        />
+
+            <textarea
+                name="message"
+                placeholder="How can we help you?"
+                rows="5"
+                value={formData.message}
+                onChange={handleInputChange}
+                required
+            ></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+</>
   );
 }
 
