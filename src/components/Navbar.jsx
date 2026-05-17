@@ -1,13 +1,23 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="navbar">
       <Link to="/" className="logo">
         Git Real Estate
       </Link>
 
-      <nav className="nav-links">
+      <button
+        className="menu-button"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        ☰
+      </button>
+
+      <nav className={menuOpen ? "nav-links active" : "nav-links"}>
         <a href="/#home">Home</a>
         <a href="/#listings">Listings</a>
         <a href="/#buyers">Buyers</a>

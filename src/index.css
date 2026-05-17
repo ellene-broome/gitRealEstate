@@ -39,6 +39,15 @@ body {
   color: #38bdf8;
 }
 
+.menu-button {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
 /* HERO */
 
 .hero {
@@ -206,15 +215,22 @@ body {
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
+    flex-wrap: wrap;
     height: auto;
     padding: 1rem;
-    gap: 1rem;
   }
 
   .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
   }
 
   .hero h1 {
@@ -223,6 +239,11 @@ body {
 
   .hero-buttons {
     flex-direction: column;
+  }
+}
+@media (min-width: 769px) {
+  .menu-button {
+    display: none;
   }
 }
 .details-page {
