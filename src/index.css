@@ -456,3 +456,74 @@ button:hover {
 .business-card p {
   color: var(--text-soft);
 }
+
+/* AREAS SECTION */
+
+.areas-section {
+  padding: 5rem 2rem;
+
+  background: linear-gradient(
+    to bottom,
+    var(--surface-dark),
+    var(--background)
+  );
+}
+
+.areas-content {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.areas-content h2 {
+  font-size: 3rem;
+
+  margin-bottom: 1rem;
+
+  color: var(--primary);
+}
+
+.areas-content p {
+  max-width: 700px;
+
+  margin: 0 auto 3rem;
+
+  color: var(--text-soft);
+
+  font-size: 1.1rem;
+}
+
+.areas-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 1.5rem;
+}
+
+.area-card {
+  background-color: var(--surface);
+
+  padding: 2rem;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(200, 169, 107, 0.2);
+
+  transition: transform 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.area-card:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--primary);
+}
+
+.area-card h3 {
+  color: var(--primary);
+
+  font-size: 1.3rem;
+}s
