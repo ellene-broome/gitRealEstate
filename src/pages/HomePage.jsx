@@ -2,13 +2,8 @@ import ListingCard from "../components/ListingCard";
 import { listings } from "../data/listings";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
-
-    
-
-
-
-
-
+import Footer from "../components/Footer";
+ 
 function HomePage() {
     const [cityFilter, setCityFilter] = useState("");
 
@@ -197,7 +192,8 @@ function handleSubmit(event) {
         </form>
     </section>
 
-</>
+    <Footer />
+    </>
   );
 }
 
