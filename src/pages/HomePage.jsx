@@ -57,47 +57,104 @@ function handleSubmit(event) {
           </div>
         </div>
       </section>
-    <section className="filters-section">
-  <h2>Search Listings</h2>
 
-        <div className="filters">
-    <input
-      type="text"
-      placeholder="Filter by city..."
-      value={cityFilter}
-      onChange={(event) =>
-        setCityFilter(event.target.value)
-      }
-    />
+      <section className="business-section">
+        <div className="business-card">
+            <h2>For Buyers</h2>
 
-     <input
-      type="number"
-      placeholder="Minimum beds"
-      value={bedsFilter}
-      onChange={(event) =>
-        setBedsFilter(event.target.value)
-      }
-    />
+                <p>
+                    Helping buyers find homes across the Greater Baton Rouge area with
+                    guidance, local expertise, and personalized service.
+                </p>
+        </div>
 
-    <input
-        type="number"
-         placeholder="Max price"
-        value={maxPrice}
-        onChange={(event) => setMaxPrice(event.target.value)}
-    />
+        <div className="business-card">
+            <h2>For Sellers</h2>
 
-    <select
-        value={sortOrder}
-        onChange={(event) => setSortOrder(event.target.value)}
-    >
-        <option value="">Sort by</option>
-        <option value="low-to-high">Price: Low to High</option>
-        <option value="high-to-low">Price: High to Low</option>
-    </select>
+                <p>
+                    Professional marketing, local market knowledge, and a strategy built to
+                    help sellers maximize value and exposure.
+                </p>
+        </div>
+
+        <div className="business-card">
+             <h2>Why Work With Me</h2>
+
+                <p>
+                    Combining modern technology with personal relationships to create a
+                    smoother and more informed real estate experience.
+                </p>
         </div>
     </section>
 
-      <section id="listings" className="listings-section">
+    <section className="areas-section">
+        <div className="areas-content">
+            <h2>Serving the Greater Baton Rouge Area</h2>
+
+            <p>
+            Proudly serving clients across the Capital Region with local knowledge,
+            responsive communication, and personalized real estate guidance.
+            </p>
+
+        <div className="areas-grid">
+            <div className="area-card">
+            <h3>East Baton Rouge Parish</h3>
+            </div>
+
+            <div className="area-card">
+                <h3>West Baton Rouge Parish</h3>
+            </div>
+
+            <div className="area-card">
+                <h3>Livingston Parish</h3>
+            </div>
+
+            <div className="area-card">
+                <h3>Ascension Parish</h3>
+            </div>
+        </div>
+        </div>
+    </section>   
+
+    <section className="filters-section">
+        <h2>Search Listings</h2>
+
+        <div className="filters">
+            <input
+                type="text"
+                placeholder="Filter by city..."
+                value={cityFilter}
+                onChange={(event) => setCityFilter(event.target.value)
+      }
+    />
+
+            <input
+                type="number"
+                placeholder="Minimum beds"
+                value={bedsFilter}
+                onChange={(event) => setBedsFilter(event.target.value)
+      }
+    />
+
+            <input
+                type="number"
+                placeholder="Max price"
+                value={maxPrice}
+                onChange={(event) => setMaxPrice(event.target.value)}
+    />
+
+            <select
+                value={sortOrder}
+                onChange={(event) => setSortOrder(event.target.value)}
+    >
+                <option value="">Sort by</option>
+                <option value="low-to-high">Price: Low to High</option>
+                <option value="high-to-low">Price: High to Low</option>
+            </select>
+        </div>
+    </section>
+
+    <section id="listings" className="listings-section">
         <h2>Featured Listings</h2>
 
         <div className="listing-grid">
@@ -139,10 +196,10 @@ function handleSubmit(event) {
         </div>
       </section>
 
-      <section className="contact-section">
+    <section className="contact-section">
          <h2>Contact Git Real Estate</h2>
 
-         <p>
+            <p>
             Ready to buy, sell, or learn more about available properties in the
             Greater Baton Rouge area?  
         </p>

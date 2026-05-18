@@ -414,3 +414,45 @@ button:hover {
   color: var(--primary);
   font-weight: bold;
 }
+
+/* BUSINESS SECTIONS */
+
+.business-section {
+  padding: 4rem 2rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 2rem;
+}
+
+.business-card {
+  background-color: var(--surface);
+
+  padding: 2rem;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(200, 169, 107, 0.2);
+
+  transition: transform 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.business-card:hover {
+  transform: translateY(-4px);
+
+  border-color: var(--primary);
+}
+
+.business-card h2 {
+  color: var(--primary);
+
+  margin-bottom: 1rem;
+
+  font-size: 1.8rem;
+}
+
+.business-card p {
+  color: var(--text-soft);
+}
