@@ -49,6 +49,7 @@ function handleSubmit(event) {
           <h1>Find Your Next Louisiana Home</h1>
 
           <p>Helping buyers and sellers across the Greater Baton Rouge area.</p>
+          <p>One commit at a time.</p>
 
           <div className="hero-buttons">
             <button>Browse Listings</button>
