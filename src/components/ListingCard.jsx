@@ -4,7 +4,7 @@ function ListingCard({ listing }) {
   return (
     <div className="listing-card">
       <img
-        src={listing.image}
+        src={listing.images ? listing.images[0] : listing.image}
         alt={listing.address}
         className="listing-image"
       />

@@ -22,11 +22,16 @@ function PropertyDetails() {
 
   return (
     <div className="details-page">
-      <img
-        src={listing.image}
-        alt={listing.address}
-        className="details-image"
-      />
+      <div className="property-gallery">
+        {(listing.images || [listing.image]).map((image, index) => (
+            <img
+                key={index}
+                src={image}
+                alt={listing.address}
+                className="gallery-image"
+    />
+  ))}
+</div>
 
       <h1>{listing.price}</h1>
 
@@ -41,6 +46,18 @@ function PropertyDetails() {
       </div>
 
       <p>{listing.description}</p>
+
+<section className="property-features">
+  <h2>Property Features</h2>
+
+  <div className="features-grid">
+    {listing.features?.map((feature, index) => (
+      <div key={index} className="feature-pill">
+        {feature}
+      </div>
+    ))}
+  </div>
+</section>
 
       <Link to="/">
         <button>Back Home</button>
