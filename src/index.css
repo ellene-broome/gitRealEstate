@@ -526,4 +526,62 @@ button:hover {
   color: var(--primary);
 
   font-size: 1.3rem;
-}s
+}
+
+/* CTA SECTION */
+
+.cta-section {
+  padding: 6rem 2rem;
+
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.95),
+    rgba(22, 22, 22, 0.95)
+  );
+
+  text-align: center;
+}
+
+.cta-content {
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: 3rem;
+
+  margin-bottom: 1.5rem;
+
+  color: var(--primary);
+}
+
+.cta-content p {
+  font-size: 1.15rem;
+
+  color: var(--text-soft);
+
+  margin-bottom: 2.5rem;
+}
+
+.cta-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 1rem;
+
+  flex-wrap: wrap;
+}
+
+.cta-buttons button {
+  padding: 1rem 2rem;
+
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .cta-content h2 {
+    font-size: 2.2rem;
+  }
+}

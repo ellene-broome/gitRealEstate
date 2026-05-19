@@ -48,8 +48,8 @@ function handleSubmit(event) {
         <div className="hero-overlay">
           <h1>Find Your Next Louisiana Home</h1>
 
-          <p>Helping buyers and sellers across the Greater Baton Rouge area.</p>
-          <p>One commit at a time.</p>
+            <p>Helping buyers and sellers across the Greater Baton Rouge area.</p>
+            <p>One commit at a time.</p>
 
           <div className="hero-buttons">
             <button>Browse Listings</button>
@@ -91,10 +91,10 @@ function handleSubmit(event) {
         <div className="areas-content">
             <h2>Serving the Greater Baton Rouge Area</h2>
 
-            <p>
-            Proudly serving clients across the Capital Region with local knowledge,
-            responsive communication, and personalized real estate guidance.
-            </p>
+                <p>
+                    Proudly serving clients across the Capital Region with local knowledge,
+                    responsive communication, and personalized real estate guidance.
+                </p>
 
         <div className="areas-grid">
             <div className="area-card">
@@ -115,6 +115,28 @@ function handleSubmit(event) {
         </div>
         </div>
     </section>   
+
+    <section className="cta-section">
+        <div className="cta-content">
+            <h2>Ready to Buy or Sell in the Greater Baton Rouge Area?</h2>
+
+                <p>
+                    Whether you are searching for your next home or preparing to list your
+                    current one, Git Real Estate is built to help you move forward with
+                    confidence.
+                </p>
+
+        <div className="cta-buttons">
+            <a href="#contact">
+                <button>Schedule a Consultation</button>
+            </a>
+
+            <a href="#listings">
+                <button className="secondary-button">Browse Listings</button>
+            </a>
+        </div>
+  </div>
+</section>
 
     <section className="filters-section">
         <h2>Search Listings</h2>
@@ -202,7 +224,7 @@ function handleSubmit(event) {
             <p>
             Ready to buy, sell, or learn more about available properties in the
             Greater Baton Rouge area?  
-        </p>
+            </p>
 
         {formSubmitted && (
             <p className="success-message">
