@@ -126,17 +126,56 @@ function handleSubmit(event) {
                     confidence.
                 </p>
 
-        <div className="cta-buttons">
-            <a href="#contact">
-                <button>Schedule a Consultation</button>
-            </a>
+            <div className="cta-buttons">
+                <a href="#contact">
+                    <button>Schedule a Consultation</button>
+                </a>
 
-            <a href="#listings">
-                <button className="secondary-button">Browse Listings</button>
-            </a>
+                <a href="#listings">
+                    <button className="secondary-button">Browse Listings</button>
+                </a>
+            </div>
         </div>
-  </div>
-</section>
+    </section>
+
+    <section className="testimonials-section">
+        <div className="testimonials-content">
+            <h2>Trusted Guidance for Every Step</h2>
+
+                <p>
+                Real estate is personal. This space will feature client stories,
+                community feedback, and experiences from buyers and sellers.
+                </p>
+
+            <div className="testimonials-grid">
+                <div className="testimonial-card">
+                    <p>
+                    “Professional, responsive, and committed to helping clients feel
+                    confident throughout the process.”
+                    </p>
+
+                    <span>Future Client Testimonial</span>
+                </div>
+
+                <div className="testimonial-card">
+                    <p>
+                    “A modern approach to real estate with personal service and local
+                    knowledge.”
+                    </p>
+
+                    <span>Community Feedback Placeholder</span>
+                </div>
+
+                <div className="testimonial-card">
+                    <p>
+                    “Focused on making buying and selling feel clear, organized, and
+                    less overwhelming.”
+                    </p>
+                    <span>Client Story Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>   
 
     <section className="filters-section">
         <h2>Search Listings</h2>
@@ -198,7 +237,7 @@ function handleSubmit(event) {
 
                 return matchesCity && matchesBeds && matchesMaxPrice;
         })
-        .sort((a, b) => {
+            .sort((a, b) => {
                 const priceA = Number(a.price.replace("$", "").replace(",", ""));
                 const priceB = Number(b.price.replace("$", "").replace(",", ""));
 
