@@ -3,6 +3,7 @@ import { listings } from "../data/listings";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 import Footer from "../components/Footer";
+import erbOverlay from "../assets/erb-overlay.png";
  
 function HomePage() {
     const [cityFilter, setCityFilter] = useState("");
@@ -44,23 +45,29 @@ function handleSubmit(event) {
   return (
     <>
     <Navbar />
-      <section className="hero">
+    <section className="hero" id="home">
         <div className="hero-overlay">
-          <h1>Find Your Next Louisiana Home</h1>
+            <img
+                src={erbOverlay}
+                alt="ERB Branding"
+                className="hero-brand-logo"
+    />
 
-            <p>Helping buyers and sellers across the Greater Baton Rouge area.</p>
-            <p>One commit at a time.</p>
+        <h1>Find Your Next Louisiana Home</h1>
 
-          <div className="hero-buttons">
-            <button>Browse Listings</button>
-            <button className="secondary-button">Contact Agent</button>
-          </div>
+        <p>Helping buyers and sellers across the Greater Baton Rouge area.</p>
+        <p>One commit at a time.</p>
+
+            <div className="hero-buttons">
+                <button>Browse Listings</button>
+                <button className="secondary-button">Contact Agent</button>
+            </div>
         </div>
-      </section>
+    </section>
 
       <section className="business-section">
         <div className="business-card">
-            <h2>For Buyers</h2>
+            <h2>Capital Region Expertise</h2>
 
                 <p>
                     Helping buyers find homes across the Greater Baton Rouge area with
@@ -69,7 +76,7 @@ function handleSubmit(event) {
         </div>
 
         <div className="business-card">
-            <h2>For Sellers</h2>
+            <h2>Modern Real Estate Strategy</h2>
 
                 <p>
                     Professional marketing, local market knowledge, and a strategy built to
@@ -78,7 +85,7 @@ function handleSubmit(event) {
         </div>
 
         <div className="business-card">
-             <h2>Why Work With Me</h2>
+             <h2>Relationship-Driven Service</h2>
 
                 <p>
                     Combining modern technology with personal relationships to create a
@@ -86,96 +93,6 @@ function handleSubmit(event) {
                 </p>
         </div>
     </section>
-
-    <section className="areas-section">
-        <div className="areas-content">
-            <h2>Serving the Greater Baton Rouge Area</h2>
-
-                <p>
-                    Proudly serving clients across the Capital Region with local knowledge,
-                    responsive communication, and personalized real estate guidance.
-                </p>
-
-        <div className="areas-grid">
-            <div className="area-card">
-            <h3>East Baton Rouge Parish</h3>
-            </div>
-
-            <div className="area-card">
-                <h3>West Baton Rouge Parish</h3>
-            </div>
-
-            <div className="area-card">
-                <h3>Livingston Parish</h3>
-            </div>
-
-            <div className="area-card">
-                <h3>Ascension Parish</h3>
-            </div>
-        </div>
-        </div>
-    </section>   
-
-    <section className="cta-section">
-        <div className="cta-content">
-            <h2>Ready to Buy or Sell in the Greater Baton Rouge Area?</h2>
-
-                <p>
-                    Whether you are searching for your next home or preparing to list your
-                    current one, Git Real Estate is built to help you move forward with
-                    confidence.
-                </p>
-
-            <div className="cta-buttons">
-                <a href="#contact">
-                    <button>Schedule a Consultation</button>
-                </a>
-
-                <a href="#listings">
-                    <button className="secondary-button">Browse Listings</button>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section className="testimonials-section">
-        <div className="testimonials-content">
-            <h2>Trusted Guidance for Every Step</h2>
-
-                <p>
-                Real estate is personal. This space will feature client stories,
-                community feedback, and experiences from buyers and sellers.
-                </p>
-
-            <div className="testimonials-grid">
-                <div className="testimonial-card">
-                    <p>
-                    “Professional, responsive, and committed to helping clients feel
-                    confident throughout the process.”
-                    </p>
-
-                    <span>Future Client Testimonial</span>
-                </div>
-
-                <div className="testimonial-card">
-                    <p>
-                    “A modern approach to real estate with personal service and local
-                    knowledge.”
-                    </p>
-
-                    <span>Community Feedback Placeholder</span>
-                </div>
-
-                <div className="testimonial-card">
-                    <p>
-                    “Focused on making buying and selling feel clear, organized, and
-                    less overwhelming.”
-                    </p>
-                    <span>Client Story Coming Soon</span>
-                </div>
-            </div>
-        </div>
-    </section>   
 
     <section className="filters-section">
         <h2>Search Listings</h2>
@@ -257,7 +174,101 @@ function handleSubmit(event) {
         </div>
       </section>
 
-    <section className="contact-section">
+    
+
+    <section className="cta-section">
+        <div className="cta-content">
+            <h2>Ready to Buy or Sell in the Greater Baton Rouge Area?</h2>
+
+                <p>
+                    Whether you are searching for your next home or preparing to list your
+                    current one, Git Real Estate is built to help you move forward with
+                    confidence.
+                </p>
+
+            <div className="cta-buttons">
+                <a href="#contact">
+                    <button>Schedule a Consultation</button>
+                </a>
+
+                <a href="#listings">
+                    <button className="secondary-button">Browse Listings</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section className="areas-section" id="areas"></section><section className="areas-section">
+        <div className="areas-content">
+            <h2>Serving the Greater Baton Rouge Area</h2>
+
+                <p>
+                    Proudly serving clients across the Capital Region with local knowledge,
+                    responsive communication, and personalized real estate guidance.
+                </p>
+
+        <div className="areas-grid">
+            <div className="area-card">
+            <h3>East Baton Rouge Parish</h3>
+            </div>
+
+            <div className="area-card">
+                <h3>West Baton Rouge Parish</h3>
+            </div>
+
+            <div className="area-card">
+                <h3>Livingston Parish</h3>
+            </div>
+
+            <div className="area-card">
+                <h3>Ascension Parish</h3>
+            </div>
+        </div>
+        </div>
+    </section>   
+
+    <section className="testimonials-section" id="testimonials">
+        <div className="testimonials-content">
+            <h2>Trusted Guidance for Every Step</h2>
+
+                <p>
+                Real estate is personal. This space will feature client stories,
+                community feedback, and experiences from buyers and sellers.
+                </p>
+
+            <div className="testimonials-grid">
+                <div className="testimonial-card">
+                    <p>
+                    “Professional, responsive, and committed to helping clients feel
+                    confident throughout the process.”
+                    </p>
+
+                    <span>Future Client Testimonial</span>
+                </div>
+
+                <div className="testimonial-card">
+                    <p>
+                    “A modern approach to real estate with personal service and local
+                    knowledge.”
+                    </p>
+
+                    <span>Community Feedback Placeholder</span>
+                </div>
+
+                <div className="testimonial-card">
+                    <p>
+                    “Focused on making buying and selling feel clear, organized, and
+                    less overwhelming.”
+                    </p>
+                    <span>Client Story Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>   
+
+    <section className="contact-section" id="contact">
          <h2>Contact Git Real Estate</h2>
 
             <p>
@@ -310,6 +321,10 @@ function handleSubmit(event) {
             <button type="submit">Send Message</button>
         </form>
     </section>
+
+    
+
+    
 
     <Footer />
     </>

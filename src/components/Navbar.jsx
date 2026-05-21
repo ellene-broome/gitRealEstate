@@ -18,12 +18,11 @@ function Navbar() {
       </button>
 
       <nav className={menuOpen ? "nav-links active" : "nav-links"}>
-        <a href="/#home">Home</a>
-        <a href="/#listings">Listings</a>
-        <a href="/#buyers">Buyers</a>
-        <a href="/#sellers">Sellers</a>
-        <a href="/#areas">Areas</a>
-        <a href="/#contact">Contact</a>
+        <a href="#home">Home</a>
+        <a href="#listings">Listings</a>
+        <a href="#areas">Areas</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
   );
