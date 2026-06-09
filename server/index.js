@@ -1,10 +1,16 @@
 const express = require("express");
 const cors = require("cors");
+const { createClient } = require("@supabase/supabase-js");
 require("dotenv").config();
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
 // Middleware
 app.use(cors());
@@ -15,8 +21,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Backend is running!" });
 });
 
-// Contact form route
-app.post("/api/contact", (req, res) => {
+// Contact form route - saves to Supabase
+app.post("/api/contact", async (req, res) => {
   const { name, email, phone, message, interest } = req.body;
 
   if (!name || !email || !message) {
@@ -26,18 +32,58 @@ app.post("/api/contact", (req, res) => {
     });
   }
 
-  console.log("New contact form submission:");
-  console.log({
+  const newSubmission = {
     name,
     email,
-    phone,
+    phone: phone || "",
     message,
-    interest,
-  });
+    interest: interest || "",
+  };
+
+  const { data, error } = await supabase
+    .from("contact_leads")
+    .insert([newSubmission])
+    .select();
+
+  if (error) {
+    console.error("Supabase insert error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Could not save contact form submission.",
+    });
+  }
+
+  console.log("Saved contact form submission:");
+  console.log(data[0]);
 
   res.status(201).json({
     success: true,
     message: "Contact form submitted successfully.",
+    submission: data[0],
+  });
+});
+
+// View saved contact leads from Supabase
+app.get("/api/contact", async (req, res) => {
+  const { data, error } = await supabase
+    .from("contact_leads")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Supabase fetch error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Could not fetch contact submissions.",
+    });
+  }
+
+  res.json({
+    success: true,
+    count: data.length,
+    submissions: data,
   });
 });
 

@@ -30,17 +30,38 @@ function handleInputChange(event) {
   });
 }
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault();
 
-  setFormSubmitted(true);
+  try {
+    const response = await fetch("http://localhost:5000/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-  setFormData({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Something went wrong.");
+    }
+
+    console.log("Backend response:", data);
+
+    setFormSubmitted(true);
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error("Contact form error:", error);
+    alert(error.message);
+  }
 }
   return (
     <>
