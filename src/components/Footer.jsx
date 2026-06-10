@@ -8,13 +8,12 @@ function Footer() {
           Serving the Greater Baton Rouge area with Ruston Properties.
         </p>
 
-        <p>Licensed in Louisiana</p>
+        <p>Louisiana Licensed Real Estate Professional</p>
 
         <p>Equal Housing Opportunity</p>
 
         <p className="footer-disclaimer">
-          Property listings and information are subject to change without
-          notice.
+          Property listings and information are subject to change without notice.
         </p>
       </div>
     </footer>
