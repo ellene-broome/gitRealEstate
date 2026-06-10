@@ -757,3 +757,10 @@ button:hover {
 html {
   scroll-behavior: smooth;
 }
+
+.section-note {
+  text-align: center;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin: -2rem auto 3rem;
+}

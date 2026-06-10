@@ -173,6 +173,9 @@ return (
 
     <section id="listings" className="listings-section">
         <h2>Featured Listings</h2>
+        <p className="section-note">
+            Listing data shown for development purposes. Live MLS/IDX integration coming soon.
+        </p>
 
         <div className="listing-grid">
           {listings
