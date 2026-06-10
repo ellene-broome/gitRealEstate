@@ -9,8 +9,7 @@ export const listings = [
     sqft: 2400,
     images: [
         "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
-        "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
-        "https://images.unsplash.com/photo-1600585154526-990dced4db0d",
+        
     ],
     description:
         "Luxury home located in the heart of Baton Rouge with modern finishes, spacious living areas, and beautiful outdoor space.",
