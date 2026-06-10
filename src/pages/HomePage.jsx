@@ -89,13 +89,18 @@ return (
 
         <h1>Find Your Next Louisiana Home</h1>
 
-        <p>Helping buyers and sellers across the Greater Baton Rouge area.</p>
-        <p>One commit at a time.</p>
+            <p>Helping buyers and sellers across the Greater Baton Rouge area.</p>
+            <p>One commit at a time.</p>
 
             <div className="hero-buttons">
-                <button>Browse Listings</button>
-                <button className="secondary-button">Contact Agent</button>
-            </div>
+                <a href="#listings">
+                    <button>Browse Listings</button>
+                </a>
+
+                <a href="#contact">
+                    <button className="secondary-button">Contact Agent</button>
+                </a>
+</div>
         </div>
     </section>
 
@@ -232,37 +237,35 @@ return (
         </div>
     </section>
 
-    
-
-    <section className="areas-section" id="areas"></section><section className="areas-section">
+    <section className="areas-section" id="areas">
         <div className="areas-content">
             <h2>Serving the Greater Baton Rouge Area</h2>
 
-                <p>
-                    Proudly serving clients across the Capital Region with local knowledge,
-                    responsive communication, and personalized real estate guidance.
-                </p>
+            <p>
+                Proudly serving clients across the Capital Region with local knowledge,
+                responsive communication, and personalized real estate guidance.
+            </p>
 
-        <div className="areas-grid">
-            <div className="area-card">
-            <h3>East Baton Rouge Parish</h3>
-            </div>
+            <div className="areas-grid">
+                <div className="area-card">
+                    <h3>East Baton Rouge Parish</h3>
+                </div>
 
-            <div className="area-card">
-                <h3>West Baton Rouge Parish</h3>
-            </div>
+                <div className="area-card">
+                    <h3>West Baton Rouge Parish</h3>
+                </div>
 
-            <div className="area-card">
-                <h3>Livingston Parish</h3>
-            </div>
+                <div className="area-card">
+                    <h3>Livingston Parish</h3>
+                </div>
 
-            <div className="area-card">
-                <h3>Ascension Parish</h3>
+                <div className="area-card">
+                    <h3>Ascension Parish</h3>
+                </div>
             </div>
         </div>
-        </div>
-    </section>   
-
+    </section>
+    
     <section className="testimonials-section" id="testimonials">
         <div className="testimonials-content">
             <h2>Trusted Guidance for Every Step</h2>
