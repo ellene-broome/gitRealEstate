@@ -41,7 +41,7 @@ async function handleSubmit(event) {
   setFormSubmitted(false);
 
   try {
-    const response = await fetch("http://localhost:5000/api/contact", {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -265,7 +265,7 @@ return (
             </div>
         </div>
     </section>
-    
+
     <section className="testimonials-section" id="testimonials">
         <div className="testimonials-content">
             <h2>Trusted Guidance for Every Step</h2>
