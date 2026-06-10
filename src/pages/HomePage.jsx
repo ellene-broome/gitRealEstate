@@ -21,6 +21,8 @@ function HomePage() {
         message: "",
 });
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
 function handleInputChange(event) {
     const { name, value } = event.target;
@@ -33,6 +35,10 @@ function handleInputChange(event) {
 
 async function handleSubmit(event) {
   event.preventDefault();
+
+  setIsSubmitting(true);
+  setErrorMessage("");
+  setFormSubmitted(false);
 
   try {
     const response = await fetch("http://localhost:5000/api/contact", {
@@ -62,10 +68,15 @@ async function handleSubmit(event) {
     });
   } catch (error) {
     console.error("Contact form error:", error);
-    alert(error.message);
+
+    setErrorMessage(
+      "Sorry, your message could not be sent. Please try again."
+    );
+  } finally {
+    setIsSubmitting(false);
   }
 }
-  return (
+return (
     <>
     <Navbar />
     <section className="hero" id="home">
@@ -304,6 +315,11 @@ async function handleSubmit(event) {
                 Thank you! Your message has been sent.
             </p>
   )}
+        {errorMessage && (
+            <p className="error-message">
+                {errorMessage}
+            </p>
+)}
 
         <form className="contact-form" onSubmit={handleSubmit}>
             <input
@@ -353,7 +369,9 @@ async function handleSubmit(event) {
                 required
             ></textarea>
 
-            <button type="submit">Send Message</button>
+            <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
+            </button>
         </form>
     </section>
 

@@ -401,6 +401,7 @@ button:hover {
 }
 
 .contact-form input,
+.contact-form select,
 .contact-form textarea {
   padding: 1rem;
   border-radius: 8px;
@@ -429,6 +430,21 @@ button:hover {
 .success-message {
   color: var(--primary);
   font-weight: bold;
+}
+
+.error-message {
+  color: #fca5a5;
+  background: rgba(127, 29, 29, 0.25);
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.contact-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 /* BUSINESS SECTIONS */
