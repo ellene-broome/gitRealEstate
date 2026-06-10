@@ -17,6 +17,7 @@ function HomePage() {
         name: "",
         email: "",
         phone: "",
+        interest: "",
         message: "",
 });
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -56,6 +57,7 @@ async function handleSubmit(event) {
       name: "",
       email: "",
       phone: "",
+      interest: "",
       message: "",
     });
   } catch (error) {
@@ -329,6 +331,18 @@ async function handleSubmit(event) {
                 value={formData.phone}
                 onChange={handleInputChange}
         />
+
+            <select
+                name="interest"
+                value={formData.interest}
+                onChange={handleInputChange}
+            >
+                <option value="">What are you interested in?</option>
+                <option value="buying">Buying a home</option>
+                <option value="selling">Selling a home</option>
+                <option value="buying-and-selling">Buying and selling</option>
+                <option value="question">I have a question</option>
+            </select>
 
             <textarea
                 name="message"
