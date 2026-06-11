@@ -3,13 +3,36 @@ import { Link } from "react-router-dom";
 
 function LeadsPage() {
   const [leads, setLeads] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [passwordInput, setPasswordInput] = useState("");
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+
+  function handlePasswordSubmit(event) {
+    event.preventDefault();
+
+    if (passwordInput === import.meta.env.VITE_LEADS_PASSWORD) {
+      setIsAuthorized(true);
+      setPasswordError("");
+    } else {
+      setPasswordError("Incorrect password. Please try again.");
+    }
+  }
+
   useEffect(() => {
+    if (!isAuthorized) {
+      return;
+    }
+
     async function fetchLeads() {
+      setIsLoading(true);
+
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`);
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/contact`
+        );
 
         const data = await response.json();
 
@@ -18,21 +41,51 @@ function LeadsPage() {
         }
 
         const sortedLeads = [...(data.submissions || [])].sort(
-            (a, b) => new Date(b.created_at) - new Date(a.created_at)
-    );
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
 
         setLeads(sortedLeads);
-      
-        } catch (error) {
-            console.error("Leads fetch error:", error);
-            setErrorMessage("Could not load leads. Please try again.");
-        } finally {
-            setIsLoading(false);
-        }
+      } catch (error) {
+        console.error("Leads fetch error:", error);
+        setErrorMessage("Could not load leads. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     fetchLeads();
-  }, []);
+  }, [isAuthorized]);
+
+  if (!isAuthorized) {
+    return (
+      <main className="leads-page">
+        <h1>Contact Leads</h1>
+
+        <p className="section-note">
+          Enter the admin password to view contact form submissions.
+        </p>
+
+        <form className="admin-login-form" onSubmit={handlePasswordSubmit}>
+          <input
+            type="password"
+            placeholder="Admin password"
+            value={passwordInput}
+            onChange={(event) => setPasswordInput(event.target.value)}
+          />
+
+          <button type="submit">View Leads</button>
+        </form>
+
+        {passwordError && <p className="error-message">{passwordError}</p>}
+
+        <div className="leads-actions">
+          <Link to="/">
+            <button type="button">Back to Home</button>
+          </Link>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="leads-page">
@@ -42,10 +95,9 @@ function LeadsPage() {
         Development admin view for contact form submissions.
       </p>
 
-
       {isLoading && <p>Loading leads...</p>}
 
-      {errorMessage && <p className="form-error">{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
 
       {!isLoading && !errorMessage && leads.length === 0 && (
         <p>No leads found yet.</p>
@@ -85,11 +137,11 @@ function LeadsPage() {
         </div>
       )}
 
-        <div className="leads-actions">
-            <Link to="/">
-                <button type="button">Back to Home</button>
-            </Link>
-        </div>
+      <div className="leads-actions">
+        <Link to="/">
+          <button type="button">Back to Home</button>
+        </Link>
+      </div>
     </main>
   );
 }
