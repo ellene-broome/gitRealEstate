@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function LeadsPage() {
@@ -10,51 +10,46 @@ function LeadsPage() {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [passwordError, setPasswordError] = useState("");
 
-  function handlePasswordSubmit(event) {
-    event.preventDefault();
+  async function fetchLeads(password) {
+    setIsLoading(true);
+    setErrorMessage("");
 
-    if (passwordInput === import.meta.env.VITE_LEADS_PASSWORD) {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/contact`,
+        {
+          headers: {
+            "x-admin-password": password,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Could not fetch leads.");
+      }
+
+      const sortedLeads = [...(data.submissions || [])].sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+      );
+
+      setLeads(sortedLeads);
       setIsAuthorized(true);
       setPasswordError("");
-    } else {
-      setPasswordError("Incorrect password. Please try again.");
+    } catch (error) {
+      console.error("Leads fetch error:", error);
+      setPasswordError("Incorrect password or unable to load leads.");
+      setIsAuthorized(false);
+    } finally {
+      setIsLoading(false);
     }
   }
 
-  useEffect(() => {
-    if (!isAuthorized) {
-      return;
-    }
-
-    async function fetchLeads() {
-      setIsLoading(true);
-
-      try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/contact`
-        );
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || "Could not fetch leads.");
-        }
-
-        const sortedLeads = [...(data.submissions || [])].sort(
-          (a, b) => new Date(b.created_at) - new Date(a.created_at)
-        );
-
-        setLeads(sortedLeads);
-      } catch (error) {
-        console.error("Leads fetch error:", error);
-        setErrorMessage("Could not load leads. Please try again.");
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchLeads();
-  }, [isAuthorized]);
+  function handlePasswordSubmit(event) {
+    event.preventDefault();
+    fetchLeads(passwordInput);
+  }
 
   if (!isAuthorized) {
     return (
@@ -73,7 +68,9 @@ function LeadsPage() {
             onChange={(event) => setPasswordInput(event.target.value)}
           />
 
-          <button type="submit">View Leads</button>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Checking..." : "View Leads"}
+          </button>
         </form>
 
         {passwordError && <p className="error-message">{passwordError}</p>}

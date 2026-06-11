@@ -79,8 +79,26 @@ app.post("/api/contact", async (req, res) => {
   });
 });
 
+function requireAdmin(req, res, next) {
+  const adminPassword = req.headers["x-admin-password"];
+
+  if (!process.env.ADMIN_PASSWORD) {
+    return res.status(500).json({
+      message: "Admin password is not configured on the server.",
+    });
+  }
+
+  if (adminPassword !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({
+      message: "Unauthorized. Invalid admin password.",
+    });
+  }
+
+  next();
+}
+
 // View saved contact leads from Supabase
-app.get("/api/contact", async (req, res) => {
+app.get("/api/contact", requireAdmin, async (req, res) => {
   const { data, error } = await supabase
     .from("contact_leads")
     .select("*")
