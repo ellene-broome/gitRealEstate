@@ -1,9 +1,7 @@
-import { Routes, Route, Link, } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import { listings } from "./data/listings";
 import PropertyDetails from "./pages/PropertyDetails";
-
-
+import LeadsPage from "./pages/LeadsPage";
 
 
 function App() {
@@ -14,6 +12,11 @@ function App() {
       <Route
         path="/listing/:id"
         element={<PropertyDetails />}
+      />
+
+      <Route
+        path="/leads"
+        element={<LeadsPage />}
       />
     </Routes>
   );
