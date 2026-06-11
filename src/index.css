@@ -835,3 +835,23 @@ html {
   max-width: 300px;
   line-height: 1.5;
 }
+
+.leads-actions {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.leads-actions button {
+  background: var(--primary);
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.leads-actions button:hover {
+  background: var(--primary-hover);
+}

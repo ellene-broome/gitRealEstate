@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function LeadsPage() {
   const [leads, setLeads] = useState([]);
@@ -16,13 +17,18 @@ function LeadsPage() {
           throw new Error(data.message || "Could not fetch leads.");
         }
 
-        setLeads(data.submissions || []);
-      } catch (error) {
-        console.error("Leads fetch error:", error);
-        setErrorMessage("Could not load leads. Please try again.");
-      } finally {
-        setIsLoading(false);
-      }
+        const sortedLeads = [...(data.submissions || [])].sort(
+            (a, b) => new Date(b.created_at) - new Date(a.created_at)
+    );
+
+        setLeads(sortedLeads);
+      
+        } catch (error) {
+            console.error("Leads fetch error:", error);
+            setErrorMessage("Could not load leads. Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     fetchLeads();
@@ -35,6 +41,7 @@ function LeadsPage() {
       <p className="section-note">
         Development admin view for contact form submissions.
       </p>
+
 
       {isLoading && <p>Loading leads...</p>}
 
@@ -77,6 +84,12 @@ function LeadsPage() {
           </table>
         </div>
       )}
+
+        <div className="leads-actions">
+            <Link to="/">
+                <button type="button">Back to Home</button>
+            </Link>
+        </div>
     </main>
   );
 }
