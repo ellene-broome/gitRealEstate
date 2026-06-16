@@ -84,12 +84,21 @@ function requireAdmin(req, res, next) {
 
   if (!process.env.ADMIN_PASSWORD) {
     return res.status(500).json({
+      success: false,
       message: "Admin password is not configured on the server.",
+    });
+  }
+
+  if (!adminPassword) {
+    return res.status(401).json({
+      success: false,
+      message: "Admin password is required.",
     });
   }
 
   if (adminPassword !== process.env.ADMIN_PASSWORD) {
     return res.status(401).json({
+      success: false,
       message: "Unauthorized. Invalid admin password.",
     });
   }
@@ -97,8 +106,7 @@ function requireAdmin(req, res, next) {
   next();
 }
 
-// View saved contact leads from Supabase
-app.get("/api/contact", requireAdmin, async (req, res) => {
+async function getContactLeads(req, res) {
   const { data, error } = await supabase
     .from("contact_leads")
     .select("*")
@@ -118,7 +126,13 @@ app.get("/api/contact", requireAdmin, async (req, res) => {
     count: data.length,
     submissions: data,
   });
-});
+}
+
+// View saved contact leads from Supabase
+app.get("/api/contact", requireAdmin, getContactLeads);
+
+// Clearer admin leads route
+app.get("/api/leads", requireAdmin, getContactLeads);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
