@@ -9,6 +9,7 @@ function LeadsPage() {
   const [passwordInput, setPasswordInput] = useState("");
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [passwordError, setPasswordError] = useState("");
+  const [showArchived, setShowArchived] = useState(false);
 
   async function fetchLeads(password) {
     setIsLoading(true);
@@ -100,22 +101,30 @@ function LeadsPage() {
     const leadToUpdate = leads.find((lead) => lead.id === leadId);
 
     if (!leadToUpdate) {
-      return;
+     return;
     }
 
     updateLead(leadId, { notes: leadToUpdate.notes || "" });
   }
 
-  if (!isAuthorized) {
-    return (
-      <main className="leads-page">
-        <h1>Contact Leads</h1>
+  function handleArchiveLead(leadId) {
+    updateLead(leadId, { archived: true });
+  }
 
-        <p className="section-note">
+  function handleRestoreLead(leadId) {
+    updateLead(leadId, { archived: false });
+  }
+
+    if (!isAuthorized) {
+      return (
+        <main className="leads-page">
+          <h1>Contact Leads</h1>
+
+          <p className="section-note">
           Enter the admin password to view contact form submissions.
-        </p>
+          </p>
 
-        <form className="admin-login-form" onSubmit={handlePasswordSubmit}>
+          <form className="admin-login-form" onSubmit={handlePasswordSubmit}>
           <input
             type="password"
             placeholder="Admin password"
@@ -139,11 +148,7 @@ function LeadsPage() {
     );
   }
 
-  function handleArchiveLead(leadId) {
-  updateLead(leadId, { archived: true });
-}
-
-  return (
+    return (
     <main className="leads-page">
       <h1>Contact Leads</h1>
 
@@ -156,8 +161,17 @@ function LeadsPage() {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
       {!isLoading && !errorMessage && leads.length === 0 && (
-        <p>No leads found yet.</p>
+        <p>
+          No active leads to display. Click “Show Archived Leads” to view archived or test submissions.
+        </p>
       )}
+
+      <button
+        type="button"
+        onClick={() => setShowArchived((current) => !current)}
+    >
+        {showArchived ? "Hide Archived Leads" : "Show Archived Leads"}
+      </button>
 
       {!isLoading && leads.length > 0 && (
         <div className="leads-table-wrapper">
@@ -178,7 +192,7 @@ function LeadsPage() {
 
             <tbody>
               {leads
-                .filter((lead) => !lead.archived)
+                .filter((lead) => showArchived || !lead.archived)
                 .map((lead) => (
                 <tr key={lead.id}>
                   <td>{lead.name}</td>
@@ -229,12 +243,21 @@ function LeadsPage() {
                       : "—"}
                   </td>
                   <td>
-                    <button
-                      type="button"
-                      onClick={() => handleArchiveLead(lead.id)}
-                    >
-                      Archive
-                    </button>
+                    {lead.archived ? (
+                      <button
+                        type="button"
+                        onClick={() => handleRestoreLead(lead.id)}
+                      >
+                        Restore
+                      </button>
+                  ) : (
+                      <button
+                        type="button"
+                        onClick={() => handleArchiveLead(lead.id)}
+                      >
+                        Archive
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}
