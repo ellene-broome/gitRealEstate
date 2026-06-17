@@ -138,6 +138,53 @@ app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 
+// Delete a contact lead permanently
+app.delete("/api/leads/:id", requireAdmin, async (req, res) => {
+  const { id } = req.params;
+
+  const { data: existingLead, error: fetchError } = await supabase
+    .from("contact_leads")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (fetchError) {
+    console.error("Supabase fetch before delete error:", fetchError);
+
+    return res.status(404).json({
+      success: false,
+      message: "Lead not found.",
+    });
+  }
+
+  if (!existingLead.archived) {
+    return res.status(400).json({
+      success: false,
+      message: "Only archived leads can be deleted.",
+    });
+  }
+
+  const { error: deleteError } = await supabase
+    .from("contact_leads")
+    .delete()
+    .eq("id", id);
+
+  if (deleteError) {
+    console.error("Supabase delete error:", deleteError);
+
+    return res.status(500).json({
+      success: false,
+      message: "Could not delete lead.",
+    });
+  }
+
+  res.json({
+    success: true,
+    message: "Lead deleted permanently.",
+    deletedLeadId: id,
+  });
+});
+
 // Update a contact lead
 app.patch("/api/leads/:id", requireAdmin, async (req, res) => {
   const { id } = req.params;

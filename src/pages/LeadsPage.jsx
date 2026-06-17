@@ -115,6 +115,43 @@ function LeadsPage() {
     updateLead(leadId, { archived: false });
   }
 
+  async function handleDeleteLead(leadId) {
+  const confirmed = window.confirm(
+    "Are you sure you want to permanently delete this lead? This cannot be undone."
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/leads/${leadId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "x-admin-password": passwordInput,
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Could not delete lead.");
+    }
+
+    setLeads((currentLeads) =>
+      currentLeads.filter((lead) => lead.id !== leadId)
+    );
+
+    setErrorMessage("");
+  } catch (error) {
+    console.error("Delete lead error:", error);
+    setErrorMessage("Could not delete lead.");
+  }
+}
+
     if (!isAuthorized) {
       return (
         <main className="leads-page">
@@ -244,20 +281,29 @@ function LeadsPage() {
                   </td>
                   <td>
                     {lead.archived ? (
-                      <button
-                        type="button"
-                        onClick={() => handleRestoreLead(lead.id)}
-                      >
-                        Restore
-                      </button>
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => handleRestoreLead(lead.id)}
+                        >
+                          Restore
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteLead(lead.id)}
+                        >
+                          Delete Permanently
+                        </button>
+                      </>
                   ) : (
-                      <button
-                        type="button"
-                        onClick={() => handleArchiveLead(lead.id)}
-                      >
-                        Archive
-                      </button>
-                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleArchiveLead(lead.id)}
+                    >
+                      Archive
+                    </button>
+                   )}
                   </td>
                 </tr>
               ))}
