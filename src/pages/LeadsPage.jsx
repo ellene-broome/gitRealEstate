@@ -51,6 +51,61 @@ function LeadsPage() {
     fetchLeads(passwordInput);
   }
 
+  async function updateLead(leadId, updates) {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/leads/${leadId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            "x-admin-password": passwordInput,
+          },
+          body: JSON.stringify(updates),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Could not update lead.");
+      }
+
+      setLeads((currentLeads) =>
+        currentLeads.map((lead) =>
+          lead.id === leadId ? data.lead : lead
+        )
+      );
+
+      setErrorMessage("");
+    } catch (error) {
+      console.error("Update lead error:", error);
+      setErrorMessage("Could not update lead.");
+    }
+  }
+
+  function handleStatusChange(leadId, newStatus) {
+    updateLead(leadId, { status: newStatus });
+  }
+
+  function handleNotesChange(leadId, newNotes) {
+    setLeads((currentLeads) =>
+      currentLeads.map((lead) =>
+        lead.id === leadId ? { ...lead, notes: newNotes } : lead
+      )
+    );
+  }
+
+  function handleSaveNotes(leadId) {
+    const leadToUpdate = leads.find((lead) => lead.id === leadId);
+
+    if (!leadToUpdate) {
+      return;
+    }
+
+    updateLead(leadId, { notes: leadToUpdate.notes || "" });
+  }
+
   if (!isAuthorized) {
     return (
       <main className="leads-page">
@@ -84,6 +139,10 @@ function LeadsPage() {
     );
   }
 
+  function handleArchiveLead(leadId) {
+  updateLead(leadId, { archived: true });
+}
+
   return (
     <main className="leads-page">
       <h1>Contact Leads</h1>
@@ -100,7 +159,7 @@ function LeadsPage() {
         <p>No leads found yet.</p>
       )}
 
-      {!isLoading && !errorMessage && leads.length > 0 && (
+      {!isLoading && leads.length > 0 && (
         <div className="leads-table-wrapper">
           <table className="leads-table">
             <thead>
@@ -109,23 +168,73 @@ function LeadsPage() {
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Interest</th>
+                <th>Status</th>
                 <th>Message</th>
+                <th>Notes</th>
                 <th>Created</th>
+                <th>Actions</th>
               </tr>
             </thead>
 
             <tbody>
-              {leads.map((lead) => (
+              {leads
+                .filter((lead) => !lead.archived)
+                .map((lead) => (
                 <tr key={lead.id}>
                   <td>{lead.name}</td>
                   <td>{lead.email}</td>
                   <td>{lead.phone || "—"}</td>
                   <td>{lead.interest || "—"}</td>
+
+                  <td>
+                    <select
+                      value={lead.status || "new"}
+                      onChange={(event) =>
+                        handleStatusChange(lead.id, event.target.value)
+                      }
+                    >
+                      <option value="new">New</option>
+                      <option value="contacted">Contacted</option>
+                      <option value="buyer">Buyer</option>
+                      <option value="seller">Seller</option>
+                      <option value="active_client">Active Client</option>
+                      <option value="under_contract">Under Contract</option>
+                      <option value="closed">Closed</option>
+                    </select>
+                  </td>
+
                   <td>{lead.message}</td>
+
+                  <td>
+                    <textarea
+                      value={lead.notes || ""}
+                      onChange={(event) =>
+                        handleNotesChange(lead.id, event.target.value)
+                      }
+                      placeholder="Add notes..."
+                      rows="3"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => handleSaveNotes(lead.id)}
+                    >
+                      Save Notes
+                    </button>
+                  </td>
+
                   <td>
                     {lead.created_at
                       ? new Date(lead.created_at).toLocaleString()
                       : "—"}
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      onClick={() => handleArchiveLead(lead.id)}
+                    >
+                      Archive
+                    </button>
                   </td>
                 </tr>
               ))}

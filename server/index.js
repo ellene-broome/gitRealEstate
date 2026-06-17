@@ -137,3 +137,58 @@ app.get("/api/leads", requireAdmin, getContactLeads);
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+// Update a contact lead
+app.patch("/api/leads/:id", requireAdmin, async (req, res) => {
+  const { id } = req.params;
+  const { status, notes, archived } = req.body;
+
+  const updates = {};
+
+  if (status !== undefined) {
+    updates.status = status;
+  }
+
+  if (notes !== undefined) {
+    updates.notes = notes;
+  }
+
+  if (archived !== undefined) {
+    updates.archived = archived;
+  }
+
+  if (Object.keys(updates).length === 0) {
+    return res.status(400).json({
+      success: false,
+      message: "No valid lead updates were provided.",
+    });
+  }
+
+  const { data, error } = await supabase
+    .from("contact_leads")
+    .update(updates)
+    .eq("id", id)
+    .select();
+
+  if (error) {
+    console.error("Supabase update error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Could not update lead.",
+    });
+  }
+
+  if (!data || data.length === 0) {
+    return res.status(404).json({
+      success: false,
+      message: "Lead not found.",
+    });
+  }
+
+  res.json({
+    success: true,
+    message: "Lead updated successfully.",
+    lead: data[0],
+  });
+});
