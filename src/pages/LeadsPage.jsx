@@ -11,6 +11,9 @@ function LeadsPage() {
   const [passwordError, setPasswordError] = useState("");
   const [showArchived, setShowArchived] = useState(false);
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+
   async function fetchLeads(password) {
     setIsLoading(true);
     setErrorMessage("");
@@ -185,6 +188,19 @@ function LeadsPage() {
     );
   }
 
+  const visibleLeads = leads.filter((lead) => {
+  const matchesArchived = showArchived || !lead.archived;
+
+  const matchesStatus =
+    statusFilter === "all" || lead.status === statusFilter;
+
+  const searchText = `${lead.name} ${lead.email} ${lead.phone} ${lead.interest} ${lead.message} ${lead.notes}`.toLowerCase();
+
+  const matchesSearch = searchText.includes(searchTerm.toLowerCase());
+
+  return matchesArchived && matchesStatus && matchesSearch;
+});
+
     return (
     <main className="leads-page">
       <h1>Contact Leads</h1>
@@ -197,9 +213,10 @@ function LeadsPage() {
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      {!isLoading && !errorMessage && leads.length === 0 && (
+      {!isLoading && !errorMessage && visibleLeads.length === 0 && (
         <p>
-          No active leads to display. Click “Show Archived Leads” to view archived or test submissions.
+          No leads match the current search or filter. Try clearing the search,
+          changing the status filter, or showing archived leads.
         </p>
       )}
 
@@ -209,6 +226,33 @@ function LeadsPage() {
     >
         {showArchived ? "Hide Archived Leads" : "Show Archived Leads"}
       </button>
+
+      <div className="leads-filters">
+  <input
+    type="text"
+    placeholder="Search leads..."
+    value={searchTerm}
+    onChange={(event) => setSearchTerm(event.target.value)}
+  />
+
+  <select
+    value={statusFilter}
+    onChange={(event) => setStatusFilter(event.target.value)}
+  >
+    <option value="all">All Statuses</option>
+    <option value="new">New</option>
+    <option value="contacted">Contacted</option>
+    <option value="buyer">Buyer</option>
+    <option value="seller">Seller</option>
+    <option value="active_client">Active Client</option>
+    <option value="under_contract">Under Contract</option>
+    <option value="closed">Closed</option>
+  </select>
+
+  <p>
+    Showing {visibleLeads.length} of {leads.length} leads
+  </p>
+</div>
 
       {!isLoading && leads.length > 0 && (
         <div className="leads-table-wrapper">
@@ -228,9 +272,7 @@ function LeadsPage() {
             </thead>
 
             <tbody>
-              {leads
-                .filter((lead) => showArchived || !lead.archived)
-                .map((lead) => (
+              {visibleLeads.map((lead) => (
                 <tr key={lead.id}>
                   <td>{lead.name}</td>
                   <td>{lead.email}</td>
