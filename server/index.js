@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { createClient } = require("@supabase/supabase-js");
+const { Resend } = require("resend");
 require("dotenv").config();
 
 const app = express();
@@ -11,6 +12,8 @@ const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Middleware
 const allowedOrigins = [
@@ -71,6 +74,28 @@ app.post("/api/contact", async (req, res) => {
 
   console.log("Saved contact form submission:");
   console.log(data[0]);
+
+  try {
+    await resend.emails.send({
+      from: "Website Leads <onboarding@resend.dev>",
+      to: process.env.LEAD_NOTIFICATION_EMAIL,
+      subject: `New website lead from ${name}`,
+      html: `
+        <h2>New Website Lead</h2>
+
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+        <p><strong>Interest:</strong> ${interest || "Not provided"}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+    });
+
+    console.log("Lead notification email sent.");
+  } catch (emailError) {
+    console.error("Resend email error:", emailError);
+  }
 
   res.status(201).json({
     success: true,
@@ -137,7 +162,6 @@ app.get("/api/leads", requireAdmin, getContactLeads);
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
 // Delete a contact lead permanently
 app.delete("/api/leads/:id", requireAdmin, async (req, res) => {
   const { id } = req.params;
@@ -210,6 +234,10 @@ app.patch("/api/leads/:id", requireAdmin, async (req, res) => {
       message: "No valid lead updates were provided.",
     });
   }
+
+  app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
 
   const { data, error } = await supabase
     .from("contact_leads")

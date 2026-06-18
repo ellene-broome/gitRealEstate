@@ -27,10 +27,10 @@ function HomePage() {
 function handleInputChange(event) {
     const { name, value } = event.target;
 
-  setFormData({
-    ...formData,
-    [name]: value,
-  });
+    setFormData((currentFormData) => ({
+        ...currentFormData,
+        [name]: value,
+    }));
 }
 
 async function handleSubmit(event) {
@@ -347,12 +347,18 @@ return (
         />
 
             <input
-                type="tel"
+                type="text"
                 name="phone"
                 placeholder="Phone Number"
                 value={formData.phone}
-                onChange={handleInputChange}
-        />
+                onChange={(event) =>
+    setFormData((currentFormData) => ({
+      ...currentFormData,
+      phone: event.target.value,
+    }))
+  }
+  autoComplete="new-password"
+/>     
 
             <select
                 name="interest"
@@ -362,7 +368,7 @@ return (
                 <option value="">What are you interested in?</option>
                 <option value="buying">Buying a home</option>
                 <option value="selling">Selling a home</option>
-                <option value="buying-and-selling">Buying and selling</option>
+                <option value="buying-and-selling">Buying and  selling</option>
                 <option value="question">I have a question</option>
             </select>
 
