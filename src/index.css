@@ -875,3 +875,175 @@ html {
 .leads-actions button:hover {
   background: var(--primary-hover);
 }
+
+/* Admin Leads Page */
+
+.leads-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.leads-page h1 {
+  margin-bottom: 0.5rem;
+}
+
+.leads-page .section-note {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.admin-login-form {
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.admin-login-form input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.leads-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  background: #fafafa;
+}
+
+.leads-filters input,
+.leads-filters select {
+  min-width: 220px;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+.leads-filters p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.leads-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.leads-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px;
+}
+
+.leads-table th,
+.leads-table td {
+  padding: 0.85rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  vertical-align: top;
+}
+
+.leads-table th {
+  background: #111;
+  color: #f5c451;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.leads-table tr:hover {
+  background: #fafafa;
+}
+
+.leads-table select,
+.leads-table textarea {
+  width: 100%;
+  padding: 0.55rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.leads-table textarea {
+  min-width: 220px;
+  resize: vertical;
+}
+
+.leads-table button,
+.leads-actions button,
+.leads-page > button {
+  margin: 0.25rem 0.25rem 0.25rem 0;
+  padding: 0.55rem 0.8rem;
+  border: none;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.leads-table button:hover,
+.leads-actions button:hover,
+.leads-page > button:hover {
+  opacity: 0.85;
+}
+
+.leads-table button:last-child {
+  background: #8b1e1e;
+}
+
+.leads-actions {
+  margin-top: 1.5rem;
+}
+
+.error-message {
+  color: #8b1e1e;
+  font-weight: 600;
+}
+
+.success-message {
+  color: #1f7a3f;
+  font-weight: 600;
+}
+
+.leads-table td {
+  color: #111;
+  background: #ffffff;
+}
+
+.leads-table tbody tr {
+  background: #ffffff;
+}
+
+.leads-table tbody tr:hover {
+  background: #f7f3ea;
+}
+
+.leads-table select,
+.leads-table textarea {
+  color: #111;
+  background: #ffffff;
+}
+
+.leads-filters input,
+.leads-filters select {
+  color: #111;
+  background: #ffffff;
+}
