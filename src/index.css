@@ -986,7 +986,6 @@ html {
   resize: vertical;
 }
 
-.leads-table button,
 .leads-actions button,
 .leads-page > button {
   margin: 0.25rem 0.25rem 0.25rem 0;
@@ -1003,10 +1002,6 @@ html {
 .leads-actions button:hover,
 .leads-page > button:hover {
   opacity: 0.85;
-}
-
-.leads-table button:last-child {
-  background: #8b1e1e;
 }
 
 .leads-actions {
@@ -1046,4 +1041,50 @@ html {
 .leads-filters select {
   color: #111;
   background: #ffffff;
+}
+
+.lead-btn {
+  display: inline-block;
+  margin: 0.25rem 0.25rem 0.25rem 0;
+  padding: 0.55rem 0.85rem;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.lead-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.lead-btn-save {
+  background: #c8a96b;
+  color: #111;
+}
+
+.lead-btn-archive {
+  background: #4b5563;
+  color: #ffffff;
+}
+
+.lead-btn-restore {
+  background: #1f7a3f;
+  color: #ffffff;
+}
+
+.lead-btn-delete {
+  background: #8b1e1e;
+  color: #ffffff;
+}
+
+.lead-btn-delete:hover {
+  box-shadow: 0 0 0 3px rgba(139, 30, 30, 0.18);
+}
+
+.lead-btn-clear {
+  background: #111;
+  color: #ffffff;
 }

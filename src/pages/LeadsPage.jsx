@@ -223,36 +223,48 @@ function LeadsPage() {
       <button
         type="button"
         onClick={() => setShowArchived((current) => !current)}
-    >
+      >
         {showArchived ? "Hide Archived Leads" : "Show Archived Leads"}
       </button>
 
       <div className="leads-filters">
-  <input
-    type="text"
-    placeholder="Search leads..."
-    value={searchTerm}
-    onChange={(event) => setSearchTerm(event.target.value)}
-  />
+        <input
+          type="text"
+          placeholder="Search leads..."
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+      />
 
-  <select
-    value={statusFilter}
-    onChange={(event) => setStatusFilter(event.target.value)}
-  >
-    <option value="all">All Statuses</option>
-    <option value="new">New</option>
-    <option value="contacted">Contacted</option>
-    <option value="buyer">Buyer</option>
-    <option value="seller">Seller</option>
-    <option value="active_client">Active Client</option>
-    <option value="under_contract">Under Contract</option>
-    <option value="closed">Closed</option>
-  </select>
+        <select
+          value={statusFilter}
+          onChange={(event) => setStatusFilter(event.target.value)}
+        >
+            <option value="all">All Statuses</option>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+            <option value="active_client">Active Client</option>
+            <option value="under_contract">Under Contract</option>
+            <option value="closed">Closed</option>
+        </select>
 
-  <p>
-    Showing {visibleLeads.length} of {leads.length} leads
-  </p>
-</div>
+        <p>
+          Showing {visibleLeads.length} of {leads.length} leads
+        </p>
+
+        <button
+          type="button"
+          className="lead-btn lead-btn-clear"
+          onClick={() => {
+            setSearchTerm("");
+            setStatusFilter("all");
+            setShowArchived(false);
+          }}
+        >
+          Clear Filters
+        </button>
+      </div>
 
       {!isLoading && leads.length > 0 && (
         <div className="leads-table-wrapper">
@@ -310,6 +322,7 @@ function LeadsPage() {
 
                     <button
                       type="button"
+                      className="lead-btn lead-btn-save"
                       onClick={() => handleSaveNotes(lead.id)}
                     >
                       Save Notes
@@ -326,6 +339,7 @@ function LeadsPage() {
                       <>
                         <button
                           type="button"
+                          className="lead-btn lead-btn-restore"
                           onClick={() => handleRestoreLead(lead.id)}
                         >
                           Restore
@@ -333,6 +347,7 @@ function LeadsPage() {
 
                         <button
                           type="button"
+                          className="lead-btn lead-btn-delete"
                           onClick={() => handleDeleteLead(lead.id)}
                         >
                           Delete Permanently
@@ -341,6 +356,7 @@ function LeadsPage() {
                   ) : (
                     <button
                       type="button"
+                      className="lead-btn lead-btn-archive"
                       onClick={() => handleArchiveLead(lead.id)}
                     >
                       Archive
