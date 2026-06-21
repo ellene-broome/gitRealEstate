@@ -286,84 +286,85 @@ function LeadsPage() {
             <tbody>
               {visibleLeads.map((lead) => (
                 <tr key={lead.id}>
-                  <td>{lead.name}</td>
-                  <td>{lead.email}</td>
-                  <td>{lead.phone || "—"}</td>
-                  <td>{lead.interest || "—"}</td>
+  <td data-label="Name">{lead.name}</td>
+  <td data-label="Email">{lead.email}</td>
+  <td data-label="Phone">{lead.phone || "—"}</td>
+  <td data-label="Interest">{lead.interest || "—"}</td>
 
-                  <td>
-                    <select
-                      value={lead.status || "new"}
-                      onChange={(event) =>
-                        handleStatusChange(lead.id, event.target.value)
-                      }
-                    >
-                      <option value="new">New</option>
-                      <option value="contacted">Contacted</option>
-                      <option value="buyer">Buyer</option>
-                      <option value="seller">Seller</option>
-                      <option value="active_client">Active Client</option>
-                      <option value="under_contract">Under Contract</option>
-                      <option value="closed">Closed</option>
-                    </select>
-                  </td>
+  <td data-label="Status">
+    <select
+      value={lead.status || "new"}
+      onChange={(event) =>
+        handleStatusChange(lead.id, event.target.value)
+      }
+    >
+      <option value="new">New</option>
+      <option value="contacted">Contacted</option>
+      <option value="buyer">Buyer</option>
+      <option value="seller">Seller</option>
+      <option value="active_client">Active Client</option>
+      <option value="under_contract">Under Contract</option>
+      <option value="closed">Closed</option>
+    </select>
+  </td>
 
-                  <td>{lead.message}</td>
+  <td data-label="Message">{lead.message}</td>
 
-                  <td>
-                    <textarea
-                      value={lead.notes || ""}
-                      onChange={(event) =>
-                        handleNotesChange(lead.id, event.target.value)
-                      }
-                      placeholder="Add notes..."
-                      rows="3"
-                    />
+  <td data-label="Notes">
+    <textarea
+      value={lead.notes || ""}
+      onChange={(event) =>
+        handleNotesChange(lead.id, event.target.value)
+      }
+      placeholder="Add notes..."
+      rows="3"
+    />
 
-                    <button
-                      type="button"
-                      className="lead-btn lead-btn-save"
-                      onClick={() => handleSaveNotes(lead.id)}
-                    >
-                      Save Notes
-                    </button>
-                  </td>
+    <button
+      type="button"
+      className="lead-btn lead-btn-save"
+      onClick={() => handleSaveNotes(lead.id)}
+    >
+      Save Notes
+    </button>
+  </td>
 
-                  <td>
-                    {lead.created_at
-                      ? new Date(lead.created_at).toLocaleString()
-                      : "—"}
-                  </td>
-                  <td>
-                    {lead.archived ? (
-                      <>
-                        <button
-                          type="button"
-                          className="lead-btn lead-btn-restore"
-                          onClick={() => handleRestoreLead(lead.id)}
-                        >
-                          Restore
-                        </button>
+  <td data-label="Created">
+    {lead.created_at
+      ? new Date(lead.created_at).toLocaleString()
+      : "—"}
+  </td>
 
-                        <button
-                          type="button"
-                          className="lead-btn lead-btn-delete"
-                          onClick={() => handleDeleteLead(lead.id)}
-                        >
-                          Delete Permanently
-                        </button>
-                      </>
-                  ) : (
-                    <button
-                      type="button"
-                      className="lead-btn lead-btn-archive"
-                      onClick={() => handleArchiveLead(lead.id)}
-                    >
-                      Archive
-                    </button>
-                   )}
-                  </td>
-                </tr>
+  <td data-label="Actions">
+    {lead.archived ? (
+      <>
+        <button
+          type="button"
+          className="lead-btn lead-btn-restore"
+          onClick={() => handleRestoreLead(lead.id)}
+        >
+          Restore
+        </button>
+
+        <button
+          type="button"
+          className="lead-btn lead-btn-delete"
+          onClick={() => handleDeleteLead(lead.id)}
+        >
+          Delete Permanently
+        </button>
+      </>
+    ) : (
+      <button
+        type="button"
+        className="lead-btn lead-btn-archive"
+        onClick={() => handleArchiveLead(lead.id)}
+      >
+        Archive
+      </button>
+    )}
+  </td>
+</tr>
               ))}
             </tbody>
           </table>

@@ -1088,3 +1088,88 @@ html {
   background: #111;
   color: #ffffff;
 }
+
+/* Mobile Lead Cards */
+
+@media (max-width: 768px) {
+  .leads-page {
+    padding: 2rem 1rem;
+  }
+
+  .leads-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .leads-filters input,
+  .leads-filters select,
+  .leads-filters button {
+    width: 100%;
+  }
+
+  .leads-table-wrapper {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    overflow-x: visible;
+  }
+
+  .leads-table {
+    min-width: 0;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+  }
+
+  .leads-table thead {
+    display: none;
+  }
+
+  .leads-table tbody,
+  .leads-table tr,
+  .leads-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .leads-table tr {
+    padding: 1rem;
+    border: 1px solid #d8c28a;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  }
+
+  .leads-table td {
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #eee;
+    color: #111;
+    background: transparent;
+  }
+
+  .leads-table td:last-child {
+    border-bottom: none;
+  }
+
+  .leads-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #8b7355;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .leads-table select,
+  .leads-table textarea {
+    width: 100%;
+  }
+
+  .lead-btn {
+    width: 100%;
+    margin-top: 0.4rem;
+    text-align: center;
+  }
+}
