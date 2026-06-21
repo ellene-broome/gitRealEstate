@@ -155,6 +155,20 @@ function LeadsPage() {
   }
 }
 
+function getStatusLabel(status) {
+  const labels = {
+    new: "New",
+    contacted: "Contacted",
+    buyer: "Buyer",
+    seller: "Seller",
+    active_client: "Active Client",
+    under_contract: "Under Contract",
+    closed: "Closed",
+  };
+
+  return labels[status] || "New";
+}
+
     if (!isAuthorized) {
       return (
         <main className="leads-page">
@@ -292,12 +306,16 @@ function LeadsPage() {
   <td data-label="Interest">{lead.interest || "—"}</td>
 
   <td data-label="Status">
-    <select
-      value={lead.status || "new"}
-      onChange={(event) =>
-        handleStatusChange(lead.id, event.target.value)
-      }
-    >
+  <span className={`status-badge status-${lead.status || "new"}`}>
+    {getStatusLabel(lead.status || "new")}
+  </span>
+
+  <select
+    value={lead.status || "new"}
+    onChange={(event) =>
+      handleStatusChange(lead.id, event.target.value)
+    }
+  >
       <option value="new">New</option>
       <option value="contacted">Contacted</option>
       <option value="buyer">Buyer</option>
