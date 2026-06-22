@@ -447,6 +447,69 @@ button:hover {
   cursor: not-allowed;
 }
 
+/* ================================
+   CONTACT FORM ALERTS
+================================ */
+
+.form-alert {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  text-align: left;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.form-alert p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.form-alert-icon {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+.form-alert-success {
+  background: #f8f1dd;
+  color: #111111;
+  border: 1px solid rgba(200, 169, 107, 0.75);
+}
+
+.form-alert-success p {
+  color: #111111;
+}
+
+.form-alert-success .form-alert-icon {
+  background: var(--primary);
+  color: #111;
+}
+
+.form-alert-error {
+  background: #fee2e2;
+  color: #7f1d1d;
+  border: 1px solid rgba(248, 113, 113, 0.65);
+}
+
+.form-alert-error p {
+  color: #7f1d1d;
+}
+
+.form-alert-error .form-alert-icon {
+  background: #8b1e1e;
+  color: #ffffff;
+}
+
 /* BUSINESS SECTIONS */
 
 .business-section {
@@ -786,104 +849,6 @@ html {
 ================================ */
 
 .leads-page {
-  min-height: 100vh;
-  padding: 6rem 2rem 4rem;
-  background: var(--background);
-  color: var(--text-main);
-}
-
-.leads-page h1 {
-  text-align: center;
-  color: var(--surface);
-  margin-bottom: 1rem;
-}
-
-.leads-table-wrapper {
-  max-width: 1200px;
-  margin: 3rem auto 0;
-  overflow-x: auto;
-  border: 1px solid rgba(200, 169, 107, 0.3);
-  border-radius: 12px;
-  background: #111827;
-}
-
-.leads-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 900px;
-}
-
-.leads-table th,
-.leads-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  vertical-align: top;
-}
-
-.leads-table th {
-  color: var(--primary);
-  font-weight: 700;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.leads-table td {
-  color: var(--text-main);
-}
-
-.leads-table tr:last-child td {
-  border-bottom: none;
-}
-
-.leads-table td:nth-child(5) {
-  max-width: 300px;
-  line-height: 1.5;
-}
-
-.leads-actions {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-}
-
-.leads-actions button {
-  background: var(--primary);
-  color: #000000;
-  border: none;
-  border-radius: 10px;
-  padding: 0.9rem 1.5rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.leads-actions button:hover {
-  background: var(--primary-hover);
-}
-
-.leads-actions {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-}
-
-.leads-actions button {
-  background: var(--primary);
-  color: #000000;
-  border: none;
-  border-radius: 10px;
-  padding: 0.9rem 1.5rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.leads-actions button:hover {
-  background: var(--primary-hover);
-}
-/* ================================
-   ADMIN LEADS PAGE - BASE LAYOUT
-================================ */
-
-.leads-page {
   max-width: 1200px;
   min-height: 100vh;
   margin: 0 auto;
@@ -895,12 +860,17 @@ html {
 .leads-page h1 {
   text-align: center;
   color: var(--primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  font-size: clamp(2.5rem, 6vw, 4rem);
 }
 
 .leads-page .section-note {
-  margin-bottom: 1.5rem;
+  margin: 0 auto 2rem;
   color: var(--text-soft);
+  line-height: 1.5;
+  max-width: 600px;
+  text-align: center;
 }
 
 /* ================================

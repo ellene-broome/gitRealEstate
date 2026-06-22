@@ -317,15 +317,18 @@ return (
             </p>
 
         {formSubmitted && (
-            <p className="success-message">
-                Thank you! Your message has been sent.
-            </p>
-  )}
+            <div className="form-alert form-alert-success">
+                <span className="form-alert-icon">✓</span>
+                <p>Thank you! Your message has been sent. I’ll be in touch soon.</p>
+            </div>
+        )}
+
         {errorMessage && (
-            <p className="error-message">
-                {errorMessage}
-            </p>
-)}
+            <div className="form-alert form-alert-error">
+                <span className="form-alert-icon">!</span>
+                <p>{errorMessage}</p>
+            </div>
+        )}
 
         <form className="contact-form" onSubmit={handleSubmit}>
             <input
