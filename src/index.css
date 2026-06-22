@@ -879,22 +879,28 @@ html {
 .leads-actions button:hover {
   background: var(--primary-hover);
 }
-
-/* Admin Leads Page */
+/* ================================
+   ADMIN LEADS PAGE - BASE LAYOUT
+================================ */
 
 .leads-page {
   max-width: 1200px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 3rem 1.5rem;
+  background: var(--background);
+  color: var(--text-main);
 }
 
 .leads-page h1 {
+  text-align: center;
+  color: var(--primary);
   margin-bottom: 0.5rem;
 }
 
 .leads-page .section-note {
   margin-bottom: 1.5rem;
-  color: #555;
+  color: var(--text-soft);
 }
 
 /* ================================
@@ -965,6 +971,8 @@ html {
   padding: 0.7rem 0.85rem;
   border: 1px solid #ccc;
   border-radius: 10px;
+  background: #ffffff;
+  color: #111;
   font-size: 0.95rem;
 }
 
@@ -973,6 +981,10 @@ html {
   font-size: 0.95rem;
   color: #555;
 }
+
+/* ================================
+   LEADS TABLE - DESKTOP VIEW
+================================ */
 
 .leads-table-wrapper {
   width: 100%;
@@ -1006,57 +1018,6 @@ html {
   text-transform: uppercase;
 }
 
-.leads-table tr:hover {
-  background: #fafafa;
-}
-
-.leads-table select,
-.leads-table textarea {
-  width: 100%;
-  padding: 0.55rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.9rem;
-}
-
-.leads-table textarea {
-  min-width: 220px;
-  resize: vertical;
-}
-
-.leads-actions button,
-.leads-page > button {
-  margin: 0.25rem 0.25rem 0.25rem 0;
-  padding: 0.55rem 0.8rem;
-  border: none;
-  border-radius: 999px;
-  background: #111;
-  color: #fff;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
-
-.leads-table button:hover,
-.leads-actions button:hover,
-.leads-page > button:hover {
-  opacity: 0.85;
-}
-
-.leads-actions {
-  margin-top: 1.5rem;
-}
-
-.error-message {
-  color: #8b1e1e;
-  font-weight: 600;
-}
-
-.success-message {
-  color: #1f7a3f;
-  font-weight: 600;
-}
-
 .leads-table td {
   color: #111;
   background: #ffffff;
@@ -1072,14 +1033,46 @@ html {
 
 .leads-table select,
 .leads-table textarea {
-  color: #111;
+  width: 100%;
+  padding: 0.55rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   background: #ffffff;
+  color: #111;
+  font-family: inherit;
+  font-size: 0.9rem;
 }
 
-.leads-filters input,
-.leads-filters select {
-  color: #111;
-  background: #ffffff;
+.leads-table textarea {
+  min-width: 220px;
+  resize: vertical;
+}
+
+/* ================================
+   LEAD ACTION BUTTONS
+================================ */
+
+.leads-actions {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.leads-actions button,
+.leads-page > button {
+  margin: 0.25rem 0.25rem 0.25rem 0;
+  padding: 0.55rem 0.8rem;
+  border: none;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.leads-actions button:hover,
+.leads-page > button:hover {
+  opacity: 0.85;
 }
 
 .lead-btn {
@@ -1178,7 +1171,23 @@ html {
   color: #374151;
 }
 
-/* Mobile Lead Cards */
+/* ================================
+   ADMIN MESSAGES
+================================ */
+
+.error-message {
+  color: #8b1e1e;
+  font-weight: 600;
+}
+
+.success-message {
+  color: #1f7a3f;
+  font-weight: 600;
+}
+
+/* ================================
+   MOBILE LEAD CARDS
+================================ */
 
 @media (max-width: 768px) {
   .leads-page {
@@ -1195,10 +1204,6 @@ html {
   .leads-filters button {
     width: 100%;
   }
-
-/* ================================
-   LEADS TABLE - DESKTOP VIEW
-================================ */
 
   .leads-table-wrapper {
     border: none;
@@ -1260,18 +1265,9 @@ html {
     width: 100%;
   }
 
-  /* ================================
-   LEAD ACTION BUTTONS
-================================ */
-
   .lead-btn {
     width: 100%;
     margin-top: 0.4rem;
     text-align: center;
   }
 }
-
-/* ================================
-   LEAD STATUS BADGES
-================================ */
-
