@@ -39,6 +39,15 @@ app.get("/", (req, res) => {
   res.json({ message: "Backend is running!" });
 });
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 // Contact form route - saves to Supabase
 app.post("/api/contact", async (req, res) => {
   const { name, email, phone, message, interest } = req.body;
@@ -49,6 +58,12 @@ app.post("/api/contact", async (req, res) => {
       message: "Name, email, and message are required.",
     });
   }
+
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safePhone = escapeHtml(phone || "Not provided");
+  const safeInterest = escapeHtml(interest || "Not provided");
+  const safeMessage = escapeHtml(message);
 
   const newSubmission = {
     name,
@@ -76,23 +91,93 @@ app.post("/api/contact", async (req, res) => {
   console.log(data[0]);
 
   try {
-    await resend.emails.send({
+    const emailResult = await resend.emails.send({
       from: "Website Leads <onboarding@resend.dev>",
       to: process.env.LEAD_NOTIFICATION_EMAIL,
-      subject: `New website lead from ${name}`,
+      subject: `New website lead from ${safeName}`,
       html: `
-        <h2>New Website Lead</h2>
+        <div style="margin:0; padding:0; background-color:#f5f1e8; font-family:Arial, sans-serif;">
+          <div style="max-width:640px; margin:0 auto; padding:32px 16px;">
+            <div style="background-color:#0a0a0a; border-radius:18px; overflow:hidden; border:1px solid #c8a96b;">
 
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-        <p><strong>Interest:</strong> ${interest || "Not provided"}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
+              <div style="padding:28px 28px 18px; text-align:center; background-color:#000000;">
+                <h1 style="margin:0; color:#c8a96b; font-size:28px; letter-spacing:0.5px;">
+                  New Website Lead
+                </h1>
+
+                <p style="margin:10px 0 0; color:#d4d4d4; font-size:15px;">
+                  Git Real Estate contact form submission
+                </p>
+              </div>
+
+              <div style="padding:28px; background-color:#111827;">
+
+                <div style="margin-bottom:18px; padding:16px; background-color:#ffffff; border-radius:12px;">
+                  <p style="margin:0 0 6px; color:#777; font-size:12px; text-transform:uppercase; font-weight:bold;">
+                    Name
+                  </p>
+                  <p style="margin:0; color:#111; font-size:18px; font-weight:bold;">
+                    ${safeName}
+                  </p>
+                </div>
+
+                <div style="margin-bottom:18px; padding:16px; background-color:#ffffff; border-radius:12px;">
+                  <p style="margin:0 0 6px; color:#777; font-size:12px; text-transform:uppercase; font-weight:bold;">
+                    Email
+                  </p>
+                  <p style="margin:0; color:#111; font-size:16px;">
+                    <a href="mailto:${safeEmail}" style="color:#1e3a8a; text-decoration:none;">
+                      ${safeEmail}
+                    </a>
+                  </p>
+                </div>
+
+                <div style="margin-bottom:18px; padding:16px; background-color:#ffffff; border-radius:12px;">
+                  <p style="margin:0 0 6px; color:#777; font-size:12px; text-transform:uppercase; font-weight:bold;">
+                    Phone
+                  </p>
+                  <p style="margin:0; color:#111; font-size:16px;">
+                    ${safePhone}
+                  </p>
+                </div>
+
+                <div style="margin-bottom:18px; padding:16px; background-color:#ffffff; border-radius:12px;">
+                  <p style="margin:0 0 6px; color:#777; font-size:12px; text-transform:uppercase; font-weight:bold;">
+                    Interest
+                  </p>
+                  <p style="margin:0; color:#111; font-size:16px;">
+                    ${safeInterest}
+                  </p>
+                </div>
+
+                <div style="padding:16px; background-color:#ffffff; border-radius:12px;">
+                  <p style="margin:0 0 6px; color:#777; font-size:12px; text-transform:uppercase; font-weight:bold;">
+                    Message
+                  </p>
+                  <p style="margin:0; color:#111; font-size:16px; line-height:1.6;">
+                    ${safeMessage}
+                  </p>
+                </div>
+
+              </div>
+
+              <div style="padding:18px 28px; text-align:center; background-color:#000000;">
+                <p style="margin:0; color:#a3a3a3; font-size:13px;">
+                  Check your admin leads page to update status, add notes, or archive this lead.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
       `,
     });
 
-    console.log("Lead notification email sent.");
+    console.log(
+      "Lead notification email sent to:",
+      process.env.LEAD_NOTIFICATION_EMAIL
+    );
+    console.log("Resend result:", emailResult);
   } catch (emailError) {
     console.error("Resend email error:", emailError);
   }
@@ -159,9 +244,6 @@ app.get("/api/contact", requireAdmin, getContactLeads);
 // Clearer admin leads route
 app.get("/api/leads", requireAdmin, getContactLeads);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
 // Delete a contact lead permanently
 app.delete("/api/leads/:id", requireAdmin, async (req, res) => {
   const { id } = req.params;
@@ -235,11 +317,7 @@ app.patch("/api/leads/:id", requireAdmin, async (req, res) => {
     });
   }
 
-  app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
-
-  const { data, error } = await supabase
+    const { data, error } = await supabase
     .from("contact_leads")
     .update(updates)
     .eq("id", id)
@@ -266,4 +344,8 @@ app.patch("/api/leads/:id", requireAdmin, async (req, res) => {
     message: "Lead updated successfully.",
     lead: data[0],
   });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
