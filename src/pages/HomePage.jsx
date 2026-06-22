@@ -24,6 +24,20 @@ function HomePage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
+function formatPhoneNumber(value) {
+    const digits = value.replace(/\D/g, "").slice(0, 10);
+
+    if (digits.length <= 3) {
+    return digits;
+    }
+
+    if (digits.length <= 6) {
+    return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    }
+
+    return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+}  
+
 function handleInputChange(event) {
     const { name, value } = event.target;
 
@@ -39,6 +53,51 @@ async function handleSubmit(event) {
   setIsSubmitting(true);
   setErrorMessage("");
   setFormSubmitted(false);
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneDigits = formData.phone.replace(/\D/g, "");
+
+  if (!formData.name.trim()) {
+    setErrorMessage("Please enter your name.");
+    setIsSubmitting(false);
+    return;
+  }
+
+  if (!formData.email.trim()) {
+    setErrorMessage("Please enter your email address.");
+    setIsSubmitting(false);
+    return;
+  }
+
+  if (!emailPattern.test(formData.email)) {
+    setErrorMessage("Please enter a valid email address.");
+    setIsSubmitting(false);
+    return;
+  }
+
+  if (!formData.phone.trim()) {
+    setErrorMessage("Please enter your phone number.");
+    setIsSubmitting(false);
+    return;
+  }
+
+  if (phoneDigits.length !== 10) {
+    setErrorMessage("Please enter a valid 10-digit phone number.");
+    setIsSubmitting(false);
+    return;
+  }
+
+  if (!formData.interest) {
+    setErrorMessage("Please choose what you are interested in.");
+    setIsSubmitting(false);
+    return;
+  }
+
+  if (!formData.message.trim()) {
+  setErrorMessage("Please enter a message.");
+  setIsSubmitting(false);
+  return;
+  }   
 
   try {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
@@ -70,7 +129,7 @@ async function handleSubmit(event) {
     console.error("Contact form error:", error);
 
     setErrorMessage(
-      "Sorry, your message could not be sent. Please try again."
+        error.message || "Sorry, your message could not be sent. Please try again."
     );
   } finally {
     setIsSubmitting(false);
@@ -330,7 +389,7 @@ return (
             </div>
         )}
 
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form className="contact-form" onSubmit={handleSubmit} noValidate>
             <input
                 type="text"
                 name="name"
@@ -341,7 +400,7 @@ return (
         />
 
             <input
-                type="email"
+                type="text"
                 name="email"
                 placeholder="Email Address"
                 value={formData.email}
@@ -355,13 +414,14 @@ return (
                 placeholder="Phone Number"
                 value={formData.phone}
                 onChange={(event) =>
-    setFormData((currentFormData) => ({
-      ...currentFormData,
-      phone: event.target.value,
-    }))
-  }
-  autoComplete="new-password"
-/>     
+                    setFormData((currentFormData) => ({
+                    ...currentFormData,
+                    phone: formatPhoneNumber(event.target.value),
+                    }))
+                }
+                autoComplete="tel"
+                maxLength="12"
+            />
 
             <select
                 name="interest"

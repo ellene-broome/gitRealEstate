@@ -59,6 +59,15 @@ app.post("/api/contact", async (req, res) => {
     });
   }
 
+  const phoneDigits = String(phone || "").replace(/\D/g, "");
+
+if (phone && phoneDigits.length !== 10) {
+  return res.status(400).json({
+    success: false,
+    message: "Please enter a valid 10-digit phone number.",
+  });
+}
+
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
   const safePhone = escapeHtml(phone || "Not provided");
@@ -68,7 +77,7 @@ app.post("/api/contact", async (req, res) => {
   const newSubmission = {
     name,
     email,
-    phone: phone || "",
+    phone: phoneDigits || "",
     message,
     interest: interest || "",
   };
