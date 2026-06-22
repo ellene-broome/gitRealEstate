@@ -161,10 +161,17 @@ app.post("/api/contact", async (req, res) => {
 
               </div>
 
-              <div style="padding:18px 28px; text-align:center; background-color:#000000;">
-                <p style="margin:0; color:#a3a3a3; font-size:13px;">
-                  Check your admin leads page to update status, add notes, or archive this lead.
+              <div style="padding:22px 28px;  text-align:center; background-color:#000000;">
+                <p style="margin:0 0 16px; color:#a3a3a3; font-size:13px;">
+                Check your admin leads page to update status, add notes, or archive this lead.
                 </p>
+
+                <a
+                  href="${process.env.LEADS_DASHBOARD_URL || "#"}"
+                  style="display:inline-block; padding:12px 20px; background-color:#c8a96b; color:#111111; text-decoration:none; border-radius:999px; font-weight:bold; font-size:14px;"
+                >
+                  Open Leads Dashboard
+                </a>
               </div>
 
             </div>
@@ -318,10 +325,10 @@ app.patch("/api/leads/:id", requireAdmin, async (req, res) => {
   }
 
     const { data, error } = await supabase
-    .from("contact_leads")
-    .update(updates)
-    .eq("id", id)
-    .select();
+      .from("contact_leads")
+      .update(updates)
+      .eq("id", id)
+      .select();
 
   if (error) {
     console.error("Supabase update error:", error);
