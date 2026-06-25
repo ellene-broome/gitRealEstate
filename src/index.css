@@ -267,6 +267,27 @@ button:hover {
   color: #94a3b8;
 }
 
+.footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.footer a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.footer p {
+  margin: 0.35rem 0;
+}
+
+.footer-disclaimer {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
 /* MOBILE */
 
 @media (max-width: 768px) {
