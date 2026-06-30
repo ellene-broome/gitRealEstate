@@ -193,47 +193,31 @@ return (
     </section>
 
     <section className="filters-section">
-        <h2>Search Listings</h2>
+  <h2>Search Homes</h2>
 
-        <div className="filters">
-            <input
-                type="text"
-                placeholder="Filter by city..."
-                value={cityFilter}
-                onChange={(event) => setCityFilter(event.target.value)
-      }
-    />
+  <p className="section-note">
+    Browse current homes in the Greater Baton Rouge area. When you find one you
+    like, send me the address and I’ll help you with the next step.
+  </p>
 
-            <input
-                type="number"
-                placeholder="Minimum beds"
-                value={bedsFilter}
-                onChange={(event) => setBedsFilter(event.target.value)
-      }
-    />
-
-            <input
-                type="number"
-                placeholder="Max price"
-                value={maxPrice}
-                onChange={(event) => setMaxPrice(event.target.value)}
-    />
-
-            <select
-                value={sortOrder}
-                onChange={(event) => setSortOrder(event.target.value)}
+  <div className="external-search-wrapper">
+    <a
+      href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
+      target="_blank"
+      rel="noopener noreferrer"
     >
-                <option value="">Sort by</option>
-                <option value="low-to-high">Price: Low to High</option>
-                <option value="high-to-low">Price: High to Low</option>
-            </select>
-        </div>
-    </section>
+      <button className="external-search-button">
+        Search Homes on Realtor.com
+      </button>
+    </a>
+  </div>
+</section>
 
     <section id="listings" className="listings-section">
         <h2>Featured Listings</h2>
         <p className="section-note">
-            Listing data shown for development purposes. Live MLS/IDX integration coming soon.
+            Featured properties will be updated as live IDX options are connected. For the
+            most current listings, use the home search above or contact me directly.
         </p>
 
         <div className="listing-grid">

@@ -396,6 +396,31 @@ button:hover {
   color: #94a3b8;
 }
 
+/* ================================
+   EXTERNAL HOME SEARCH BUTTON
+================================ */
+
+.external-search-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.external-search-button {
+  padding: 1rem 1.8rem;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--primary);
+  color: #111;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.external-search-button:hover {
+  background-color: var(--primary-hover);
+}
+
 /* CONTACT FORM */
 
 .contact-section {
