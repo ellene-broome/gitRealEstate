@@ -19,6 +19,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const allowedOrigins = [
   "http://localhost:5173",
   process.env.CLIENT_URL,
+  "https://erbmoves.com",
+  "https://www.erbmoves.com",
 ];
 
 app.use(
