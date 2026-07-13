@@ -764,22 +764,29 @@ h3 {
 }
 
 .testimonial-card {
-  background-color: var(--surface);
+  background: #111827;
   padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid rgba(200, 169, 107, 0.2);
+  border-radius: 16px;
+  border: 1px solid rgba(200, 169, 107, 0.35);
   text-align: left;
 }
 
+.testimonial-card h3 {
+  color: var(--primary);
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
 .testimonial-card p {
-  color: var(--text-soft);
-  font-style: italic;
-  margin-bottom: 1.5rem;
+  color: #f3f4f6;
+  font-style: normal;
+  margin-bottom: 0;
+  line-height: 1.7;
 }
 
 .testimonial-card span {
-  color: var(--primary);
-  font-weight: bold;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {

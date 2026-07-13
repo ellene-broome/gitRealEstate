@@ -308,37 +308,35 @@ return (
             <h2>Trusted Guidance for Every Step</h2>
 
                 <p>
-                Real estate is personal. This space will feature client stories,
-                community feedback, and experiences from buyers and sellers.
+                Real estate is personal. This space will feature client stories, 
                 </p>
+                <p>MY GOALS:</p>
 
-            <div className="testimonials-grid">
-                <div className="testimonial-card">
-                    <p>
-                    “Professional, responsive, and committed to helping clients feel
-                    confident throughout the process.”
-                    </p>
+           <div className="testimonials-grid">
+  <div className="testimonial-card">
+    <h3>Clear Guidance</h3>
+    <p>
+      Helping you understand each step of the buying or selling process so you
+      can make confident decisions.
+    </p>
+  </div>
 
-                    <span>Future Client Testimonial</span>
-                </div>
+  <div className="testimonial-card">
+    <h3>Local Knowledge</h3>
+    <p>
+      Using Greater Baton Rouge area experience to help you compare
+      neighborhoods, pricing, timing, and next steps.
+    </p>
+  </div>
 
-                <div className="testimonial-card">
-                    <p>
-                    “A modern approach to real estate with personal service and local
-                    knowledge.”
-                    </p>
-
-                    <span>Community Feedback Placeholder</span>
-                </div>
-
-                <div className="testimonial-card">
-                    <p>
-                    “Focused on making buying and selling feel clear, organized, and
-                    less overwhelming.”
-                    </p>
-                    <span>Client Story Coming Soon</span>
-                </div>
-            </div>
+  <div className="testimonial-card">
+    <h3>Steady Communication</h3>
+    <p>
+      Keeping the process organized, responsive, and as low-stress as possible
+      from first conversation to closing.
+    </p>
+  </div>
+</div>
         </div>
     </section>   
         {/* Contact Form Section */}
