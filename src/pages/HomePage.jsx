@@ -1,18 +1,11 @@
-import ListingCard from "../components/ListingCard";
-import { listings } from "../data/listings";
+
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 import Footer from "../components/Footer";
 import erbOverlay from "../assets/erb-overlay.png";
  
 function HomePage() {
-    const [cityFilter, setCityFilter] = useState("");
-
-    const [bedsFilter, setBedsFilter] = useState("");
-
-    const [maxPrice, setMaxPrice] = useState("");
-
-    const [sortOrder, setSortOrder] = useState("");
+    
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -137,7 +130,7 @@ async function handleSubmit(event) {
 }
 return (
     <>
-    // Navbar //
+    /* Navbar */
     <Navbar />
     <section className="hero" id="home">
         <div className="hero-overlay">
@@ -192,7 +185,7 @@ return (
                 </p>
         </div>
     </section>
-        // Search Filters Section //
+        /* Search Filters Section */
     <section className="filters-section">
         <h2>Search Homes</h2>
 
@@ -213,7 +206,7 @@ return (
             </a>
         </div>
     </section>
-        // Featured Listings Section //
+        /* Featured Listings Section */
     <section className="home-search-section" id="listings">
         <div className="section-header">
             <p className="eyebrow">Search Homes</p>
@@ -280,7 +273,7 @@ return (
         </div>
     </section>
 
-        // Call to Action Section //
+        /* Call to Action Section */
 
     <section className="cta-section">
         <div className="cta-content">
@@ -303,7 +296,7 @@ return (
             </div>
         </div>
     </section>
-        // Service Areas Section //
+        /* Service Areas Section */
     <section className="areas-section" id="areas">
         <div className="areas-content">
             <h2>Serving the Greater Baton Rouge Area</h2>
@@ -372,7 +365,7 @@ return (
             </div>
         </div>
     </section>   
-        // Contact Form Section //
+        /* Contact Form Section */
     <section className="contact-section" id="contact">
          <h2>Contact Git Real Estate</h2>
 
