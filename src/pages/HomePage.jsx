@@ -266,8 +266,12 @@ return (
                     <button>Schedule a Consultation</button>
                 </a>
 
-                <a href="#listings">
-                    <button className="secondary-button">Browse Listings</button>
+                <a
+                 href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
+                 target="_blank"
+                 rel="noopener noreferrer"
+>
+                <button className="secondary-button">Search Homes</button>
                 </a>
             </div>
         </div>
@@ -283,22 +287,46 @@ return (
             </p>
 
             <div className="areas-grid">
-                <div className="area-card">
-                    <h3>East Baton Rouge Parish</h3>
-                </div>
+  <a
+    className="area-card"
+    href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <h3>East Baton Rouge Parish</h3>
+    <p>Search homes in Baton Rouge and surrounding East Baton Rouge areas.</p>
+  </a>
 
-                <div className="area-card">
-                    <h3>West Baton Rouge Parish</h3>
-                </div>
+  <a
+    className="area-card"
+    href="https://www.realtor.com/realestateandhomes-search/Port-Allen_LA"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <h3>West Baton Rouge Parish</h3>
+    <p>Explore homes in Port Allen, Brusly, Addis, and nearby areas.</p>
+  </a>
 
-                <div className="area-card">
-                    <h3>Livingston Parish</h3>
-                </div>
+  <a
+    className="area-card"
+    href="https://www.realtor.com/realestateandhomes-search/Walker_LA"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <h3>Livingston Parish</h3>
+    <p>Search homes in Walker, Denham Springs, Livingston, and surrounding areas.</p>
+  </a>
 
-                <div className="area-card">
-                    <h3>Ascension Parish</h3>
-                </div>
-            </div>
+  <a
+    className="area-card"
+    href="https://www.realtor.com/realestateandhomes-search/Prairieville_LA"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <h3>Ascension Parish</h3>
+    <p>Browse homes in Prairieville, Gonzales, Dutchtown, and nearby areas.</p>
+  </a>
+</div>
         </div>
     </section>
         {/* Testimonials Section */}
