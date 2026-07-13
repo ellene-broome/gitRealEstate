@@ -137,6 +137,7 @@ async function handleSubmit(event) {
 }
 return (
     <>
+    // Navbar //
     <Navbar />
     <section className="hero" id="home">
         <div className="hero-overlay">
@@ -162,7 +163,7 @@ return (
 </div>
         </div>
     </section>
-
+        // Business Section Cards //
       <section className="business-section">
         <div className="business-card">
             <h2>Capital Region Expertise</h2>
@@ -191,75 +192,95 @@ return (
                 </p>
         </div>
     </section>
-
+        // Search Filters Section //
     <section className="filters-section">
-  <h2>Search Homes</h2>
+        <h2>Search Homes</h2>
 
-  <p className="section-note">
-    Browse current homes in the Greater Baton Rouge area. When you find one you
-    like, send me the address and I’ll help you with the next step.
-  </p>
-
-  <div className="external-search-wrapper">
-    <a
-      href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <button className="external-search-button">
-        Search Homes on Realtor.com
-      </button>
-    </a>
-  </div>
-</section>
-
-    <section id="listings" className="listings-section">
-        <h2>Featured Listings</h2>
         <p className="section-note">
-            Featured properties will be updated as live IDX options are connected. For the
-            most current listings, use the home search above or contact me directly.
+        Browse current homes in the Greater Baton Rouge area. When you find one you
+        like, send me the address and I’ll help you with the next step.
         </p>
 
-        <div className="listing-grid">
-          {listings
-            .filter((listing) => {
-                const listingPrice = Number(
-                    listing.price.replace("$", "").replace(",", "")
-        );
-
-                const matchesCity = listing.city
-                    .toLowerCase()
-                    .includes(cityFilter.toLowerCase());
-
-                const matchesBeds =
-                    bedsFilter === "" || listing.beds >= Number(bedsFilter);
-
-                const matchesMaxPrice =
-                    maxPrice === "" || listingPrice <= Number(maxPrice);
-
-                return matchesCity && matchesBeds && matchesMaxPrice;
-        })
-            .sort((a, b) => {
-                const priceA = Number(a.price.replace("$", "").replace(",", ""));
-                const priceB = Number(b.price.replace("$", "").replace(",", ""));
-
-                if (sortOrder === "low-to-high") {
-                return priceA - priceB;
-    }
-
-                if (sortOrder === "high-to-low") {
-                    return priceB - priceA;
-    }
-
-                return 0;
-                })
-                .map((listing) => (
-                    <ListingCard key={listing.id} listing={listing} />
-                ))}
+        <div className="external-search-wrapper">
+            <a
+            href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
+            target="_blank"
+            rel="noopener noreferrer"
+            >
+            <button className="external-search-button">
+            Search Homes on Realtor.com
+            </button>
+            </a>
         </div>
-      </section>
+    </section>
+        // Featured Listings Section //
+    <section className="home-search-section" id="listings">
+        <div className="section-header">
+            <p className="eyebrow">Search Homes</p>
+            <h2>Start Your Greater Baton Rouge Home Search</h2>
+            <p>
+            Browse current homes for sale in the areas I serve. When you find one you
+            like, send it to me and I’ll help you schedule a showing, understand the
+            details, and decide if it is a good fit.
+            </p>
+        </div>
 
-    
+        <div className="search-card-grid">
+            <a
+            className="search-card"
+            href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
+            target="_blank"
+            rel="noreferrer"
+            >
+            <h3>Baton Rouge</h3>
+            <p>Explore homes for sale in Baton Rouge and nearby neighborhoods.</p>
+            <span>Search Baton Rouge →</span>
+            </a>
+
+            <a
+            className="search-card"
+            href="https://www.realtor.com/realestateandhomes-search/Denham-Springs_LA"
+            target="_blank"
+            rel="noreferrer"
+            >
+            <h3>Denham Springs</h3>
+            <p>Search homes in Denham Springs and the surrounding area.</p>
+            <span>Search Denham Springs →</span>
+            </a>
+
+            <a
+            className="search-card"
+            href="https://www.realtor.com/realestateandhomes-search/Walker_LA"
+            target="_blank"
+            rel="noreferrer"
+            >
+            <h3>Walker</h3>
+            <p>View homes available in Walker and Livingston Parish.</p>
+            <span>Search Walker →</span>
+            </a>
+
+            <a
+            className="search-card"
+            href="https://www.realtor.com/realestateandhomes-search/Prairieville_LA"
+            target="_blank"
+            rel="noreferrer"
+            >
+            <h3>Prairieville</h3>
+            <p>Browse homes in Prairieville, Ascension Parish, and nearby areas.</p>
+            <span>Search Prairieville →</span>
+            </a>
+        </div>
+
+        <div className="search-note">
+            <p>
+            Searching online is a great starting point, but not every listing tells
+            the whole story. Contact me before you schedule a showing so I can help
+            you review the property, location, pricing, and next steps.
+            </p>
+        </div>
+    </section>
+
+        // Call to Action Section //
 
     <section className="cta-section">
         <div className="cta-content">
@@ -282,7 +303,7 @@ return (
             </div>
         </div>
     </section>
-
+        // Service Areas Section //
     <section className="areas-section" id="areas">
         <div className="areas-content">
             <h2>Serving the Greater Baton Rouge Area</h2>
@@ -311,6 +332,7 @@ return (
             </div>
         </div>
     </section>
+        // Testimonials Section //
 
     <section className="testimonials-section" id="testimonials">
         <div className="testimonials-content">
@@ -350,7 +372,7 @@ return (
             </div>
         </div>
     </section>   
-
+        // Contact Form Section //
     <section className="contact-section" id="contact">
          <h2>Contact Git Real Estate</h2>
 
