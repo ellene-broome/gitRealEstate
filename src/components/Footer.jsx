@@ -16,7 +16,27 @@ function Footer() {
           .
         </p>
 
-        <p>Louisiana Licensed Real Estate Professional</p>
+        <div className="footer-agent-contact">
+          <p>
+            <strong>Ellene Broome</strong>
+          </p>
+
+          <p>Louisiana Licensed Real Estate Professional</p>
+
+          <p>
+            Email:{" "}
+            <a href="mailto:erbcollectivela@gmail.com">
+            erbcollectivela@gmail.com 
+            </a>
+          </p>
+
+          <p>
+            Phone:{" "}
+            <a href="tel:2252701874">
+              (225) 270-1874
+            </a>
+          </p>
+        </div>
 
         <p>Equal Housing Opportunity</p>
 
