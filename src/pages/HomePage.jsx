@@ -156,7 +156,7 @@ return (
 </div>
         </div>
     </section>
-        // Business Section Cards
+        {/* Business Section Cards */}
       <section className="business-section">
         <div className="business-card">
             <h2>Capital Region Expertise</h2>
