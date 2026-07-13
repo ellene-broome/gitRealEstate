@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 import Footer from "../components/Footer";
 import erbOverlay from "../assets/erb-overlay.png";
+import aboutMe from "../assets/aboutMe2.png";
  
 function HomePage() {
     
@@ -146,8 +147,12 @@ return (
             <p>One commit at a time.</p>
 
             <div className="hero-buttons">
-                <a href="#listings">
-                    <button>Browse Listings</button>
+                <a
+                 href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
+                 target="_blank"
+                 rel="noopener noreferrer"
+>
+                 <button>Search Homes</button>
                 </a>
 
                 <a href="#contact">
@@ -185,93 +190,64 @@ return (
                 </p>
         </div>
     </section>
-        {/* Search Filters Section */}
-    <section className="filters-section">
-        <h2>Search Homes</h2>
 
-        <p className="section-note">
-        Browse current homes in the Greater Baton Rouge area. When you find one you
-        like, send me the address and I’ll help you with the next step.
+    {/* About Agent Section */}
+<section className="about-agent-section" id="about">
+  <div className="about-agent-card">
+    <div className="about-agent-photo-wrapper">
+      <img
+        src={aboutMe}
+        alt="Ellene Broome, Louisiana licensed real estate professional"
+        className="about-agent-photo"
+/>
+    </div>
+
+    <div className="about-agent-content">
+      <p className="eyebrow">About Ellene</p>
+
+      <h2>Rooted in Greater Baton Rouge. Ready to Help You Move Forward.</h2>
+
+      <p>
+        I’m Ellene Broome, a Louisiana licensed real estate professional serving
+        the Greater Baton Rouge area with Ruston Properties.
+      </p>
+
+      <p>
+        I moved to the Baton Rouge area in 2001 and raised my four children
+        here, so this community is more than a market to me — it is home.
+      </p>
+
+      <p>
+        Over the years, I have watched the Greater Baton Rouge area grow, change,
+        and welcome families through every season of life. That personal
+        connection helps me guide buyers and sellers with both local knowledge
+        and genuine care.
+      </p>
+
+      <p>
+        My goal is to help you feel informed, prepared, and confident from the
+        first conversation to the closing table. Whether you are searching for
+        your next home, preparing to sell, or simply trying to understand your
+        options, I’m here to help you move forward with a clear plan.
+      </p>
+
+      <div className="about-agent-details">
+        <p>
+          <strong>Serving:</strong> Baton Rouge, Denham Springs, Walker,
+          Livingston Parish, Ascension Parish, and surrounding areas
         </p>
 
-        <div className="external-search-wrapper">
-            <a
-            href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            <button className="external-search-button">
-            Search Homes on Realtor.com
-            </button>
-            </a>
-        </div>
-    </section>
-        {/* Featured Listings Section */}
-    <section className="home-search-section" id="listings">
-        <div className="section-header">
-            <p className="eyebrow">Search Homes</p>
-            <h2>Start Your Greater Baton Rouge Home Search</h2>
-            <p>
-            Browse current homes for sale in the areas I serve. When you find one you
-            like, send it to me and I’ll help you schedule a showing, understand the
-            details, and decide if it is a good fit.
-            </p>
-        </div>
+        <p>
+          <strong>Brokerage:</strong> Ruston Properties
+        </p>
+      </div>
 
-        <div className="search-card-grid">
-            <a
-            className="search-card"
-            href="https://www.realtor.com/realestateandhomes-search/Baton-Rouge_LA"
-            target="_blank"
-            rel="noreferrer"
-            >
-            <h3>Baton Rouge</h3>
-            <p>Explore homes for sale in Baton Rouge and nearby neighborhoods.</p>
-            <span>Search Baton Rouge →</span>
-            </a>
-
-            <a
-            className="search-card"
-            href="https://www.realtor.com/realestateandhomes-search/Denham-Springs_LA"
-            target="_blank"
-            rel="noreferrer"
-            >
-            <h3>Denham Springs</h3>
-            <p>Search homes in Denham Springs and the surrounding area.</p>
-            <span>Search Denham Springs →</span>
-            </a>
-
-            <a
-            className="search-card"
-            href="https://www.realtor.com/realestateandhomes-search/Walker_LA"
-            target="_blank"
-            rel="noreferrer"
-            >
-            <h3>Walker</h3>
-            <p>View homes available in Walker and Livingston Parish.</p>
-            <span>Search Walker →</span>
-            </a>
-
-            <a
-            className="search-card"
-            href="https://www.realtor.com/realestateandhomes-search/Prairieville_LA"
-            target="_blank"
-            rel="noreferrer"
-            >
-            <h3>Prairieville</h3>
-            <p>Browse homes in Prairieville, Ascension Parish, and nearby areas.</p>
-            <span>Search Prairieville →</span>
-            </a>
-        </div>
-
-        <div className="search-note">
-            <p>
-            Searching online is a great starting point, but not every listing tells
-            the whole story. Contact me before you schedule a showing so I can help
-            you review the property, location, pricing, and next steps.
-            </p>
-        </div>
-    </section>
+        <a href="#contact" className="about-agent-button-link">
+         <button className="about-agent-button">Contact Ellene</button>
+        </a>
+    </div>
+  </div>
+</section>
 
         {/* Call to Action Section */}
 
