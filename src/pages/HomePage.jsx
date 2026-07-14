@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { useState } from "react";
 import Footer from "../components/Footer";
 import erbOverlay from "../assets/erb-overlay.png";
-import aboutMe from "../assets/aboutMe2.png";
+import aboutMe from "../assets/aboutMe.png";
  
 function HomePage() {
     
