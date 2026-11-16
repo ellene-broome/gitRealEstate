@@ -324,7 +324,7 @@ return (
     rel="noopener noreferrer"
   >
     <h3>Ascension Parish</h3>
-    <p>Browse homes in Prairieville, Gonzales, and nearby areas.</p>
+    <p>Browse for homes in Prairieville, Gonzales and nearby areas.</p>
   </a>
 </div>
         </div>
