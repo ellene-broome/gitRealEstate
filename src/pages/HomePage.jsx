@@ -294,7 +294,7 @@ return (
     rel="noopener noreferrer"
   >
     <h3>East Baton Rouge Parish</h3>
-    <p>Search homes in Baton Rouge and surrounding East Baton Rouge areas.</p>
+    <p>Look for homes in Baton Rouge and surrounding East Baton Rouge areas.</p>
   </a>
 
   <a
@@ -314,7 +314,7 @@ return (
     rel="noopener noreferrer"
   >
     <h3>Livingston Parish</h3>
-    <p>Search homes in Walker, Denham Springs, Livingston, and surrounding areas.</p>
+    <p>Browse for homes in Walker, Denham Springs, Livingston, and surrounding areas.</p>
   </a>
 
   <a
