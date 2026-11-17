@@ -314,7 +314,7 @@ return (
     rel="noopener noreferrer"
   >
     <h3>Livingston Parish</h3>
-    <p>Search for homes in Walker, Denham Springs, Livingston, and surrounding areas.</p>
+    <p>Search for homes in Walker, Denham Springs and surrounding areas.</p>
   </a>
 
   <a
